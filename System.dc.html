@@ -20,7 +20,7 @@ a{color:#F2C14E}a:hover{color:#F6D27E}
 <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F2C14E">ARCHITECTURE</span>
 <h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 38px">البنية التقنية للمنصة</h1>
 </div>
-<span style="font-size: 14px; color: #B9BCC1">الواجهة على GitHub · البيانات والمنطق على Supabase</span>
+<span style="font-size: 14px; color: #B9BCC1">الواجهة على GitHub · البيانات والمنطق على خادم VPS (قاعدة بيانات PostgreSQL)</span>
 </div>
 
 <div style="display: grid; grid-template-columns: 1fr 60px 1.5fr 60px 1fr; align-items: stretch">
@@ -43,26 +43,26 @@ a{color:#F2C14E}a:hover{color:#F6D27E}
 <div style="display: flex; align-items: center; justify-content: center; color: #5E6166; font-size: 28px">⟷</div>
 
 <div style="padding: 22px; border-radius: 20px; border: 1.5px solid #2F5D50; background: #1B2622; display: flex; flex-direction: column; gap: 14px">
-<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 700; font-size: 18px">Supabase</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A9D4C2">Postgres · Auth · Storage · Edge</span></div>
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 700; font-size: 18px">خادم VPS (PostgreSQL)</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A9D4C2">PostgreSQL 16 · Node.js API · Linux VPS</span></div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
 <div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
 <span style="font-weight: 600; font-size: 14px">الجداول</span>
 <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #C9DCD5; line-height: 1.9">jobs · job_prompts<br>candidates · applications<br>assessments · answers<br>evaluations · interviews<br>wa_messages · audit_log</span>
 </div>
 <div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 600; font-size: 14px">Edge Functions</span>
+<span style="font-weight: 600; font-size: 14px">خدمات الخلفية (API)</span>
 <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #C9DCD5; line-height: 1.9">ai-gateway<br>generate-questions<br>score-assessment<br>analyze-cv<br>create-meeting</span>
 </div>
 <div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 600; font-size: 14px">Storage</span>
-<span style="font-size: 12px; color: #C9DCD5; line-height: 1.8">السير الذاتية والأعمال المرفقة بروابط موقّعة مؤقتة</span>
+<span style="font-weight: 600; font-size: 14px">تخزين الملفات</span>
+<span style="font-size: 12px; color: #C9DCD5; line-height: 1.8">السير الذاتية والأعمال المرفقة بروابط آمنة مشفرة</span>
 </div>
 <div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 600; font-size: 14px">pg_cron + Realtime</span>
+<span style="font-weight: 600; font-size: 14px">Cron + WebSockets</span>
 <span style="font-size: 12px; color: #C9DCD5; line-height: 1.8">تنبيه اللجنة عند حلول كل موعد · تحديث اللوحة لحظياً</span>
 </div>
 </div>
-<span style="font-size: 12px; color: #A9D4C2">Row Level Security: المتقدم يرى طلبه فقط · اللجنة حسب الدور (رئيس، عضو، موارد بشرية)</span>
+<span style="font-size: 12px; color: #A9D4C2">أمان البيانات: المتقدم يرى طلبه فقط · اللجنة حسب الدور (JWT & RBAC)</span>
 </div>
 
 <div style="display: flex; align-items: center; justify-content: center; color: #5E6166; font-size: 28px">⟷</div>
@@ -98,7 +98,7 @@ a{color:#F2C14E}a:hover{color:#F6D27E}
 class Component extends DCLogic {
   renderVals() {
     return { flow: [
-      { n: '01', t: 'المتقدم يرسل بياناته وسيرته ← تُحفظ في applications و Storage.' },
+      { n: '01', t: 'المتقدم يرسل بياناته وسيرته ← تُحفظ في جداول applications وتخزين VPS.' },
       { n: '02', t: 'generate-questions يبني 10 أسئلة من برومنت الوظيفة.' },
       { n: '03', t: 'score-assessment يصحّح ويحسب الدرجة ← أقل من 60% اعتذار، وإلا تأهل.' },
       { n: '04', t: 'ترتيب المواعيد ← create-meeting يولّد رابط القاعة ← زر واتساب يفتح الدعوة جاهزة، وعند الموعد يظهر زر رابط القاعة.' },
