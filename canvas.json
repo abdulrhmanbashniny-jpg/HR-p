@@ -1,0 +1,178 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "AIEngine.dc.html": {
+      "h": 2150,
+      "is_interactive": true,
+      "title": "١٢ — محرك التحليل بالذكاء الاصطناعي",
+      "w": 1440,
+      "x": 0,
+      "y": 4050
+    },
+    "Apply.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "title": "٣ — نموذج التقديم",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "Assessment.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "title": "٤ — اختبار الجدارة (١٠ أسئلة)",
+      "w": 1440,
+      "x": 4560,
+      "y": 0
+    },
+    "CandidateProfile.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "title": "٧ — ملف المرشح وتقييم اللجنة",
+      "w": 1440,
+      "x": 1520,
+      "y": 2100
+    },
+    "Dashboard.dc.html": {
+      "h": 1200,
+      "is_interactive": true,
+      "title": "٦ — لوحة التحكم: نظرة عامة",
+      "w": 1440,
+      "x": 0,
+      "y": 2100
+    },
+    "Interviews.dc.html": {
+      "h": 1450,
+      "is_interactive": true,
+      "title": "٩ — رسائل واتساب (رابط هجين)",
+      "w": 1440,
+      "x": 4560,
+      "y": 2100
+    },
+    "Job.dc.html": {
+      "h": 1500,
+      "is_interactive": true,
+      "title": "٢ — تفاصيل الوظيفة",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "JobBuilder.dc.html": {
+      "h": 1250,
+      "is_interactive": true,
+      "title": "١٠ — إعداد الوظيفة وبرومنت الذكاء الاصطناعي",
+      "w": 1440,
+      "x": 6080,
+      "y": 2100
+    },
+    "Main.dc.html": {
+      "h": 1700,
+      "is_interactive": true,
+      "title": "١ — الصفحة الرئيسية والوظائف",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Ranking.dc.html": {
+      "h": 1100,
+      "is_interactive": true,
+      "title": "٨ — ترتيب المرشحين",
+      "w": 1440,
+      "x": 3040,
+      "y": 2100
+    },
+    "ResultFail.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "title": "٥ب — النتيجة: اعتذار (< 60%)",
+      "w": 1440,
+      "x": 7600,
+      "y": 0
+    },
+    "ResultPass.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "title": "٥أ — النتيجة: اجتاز (≥ 60%)",
+      "w": 1440,
+      "x": 6080,
+      "y": 0
+    },
+    "Scheduler.dc.html": {
+      "h": 1600,
+      "is_interactive": true,
+      "title": "١٣ — ترتيب مواعيد المقابلات",
+      "w": 1440,
+      "x": 1520,
+      "y": 4050
+    },
+    "Settings.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "title": "١٤ — الإعدادات: مزوّد AI، القاعة، واتساب",
+      "w": 1440,
+      "x": 3040,
+      "y": 4050
+    },
+    "System.dc.html": {
+      "h": 1000,
+      "title": "١١ — البنية التقنية (GitHub + Supabase)",
+      "w": 1440,
+      "x": 7600,
+      "y": 2100
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-27T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "row1": {
+      "kind": "title1",
+      "maxW": 8000,
+      "text": "رحلة المتقدّم — من اختيار الوظيفة حتى النتيجة",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "row2": {
+      "kind": "title1",
+      "maxW": 8000,
+      "text": "لوحة التحكم — لجنة التوظيف",
+      "w": 240,
+      "x": 0,
+      "y": 1800
+    },
+    "row3": {
+      "kind": "title1",
+      "maxW": 4480,
+      "text": "التحليل الذكي، ترتيب المواعيد، والتكاملات",
+      "w": 240,
+      "x": 0,
+      "y": 3750
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Job.dc.html",
+    "Apply.dc.html",
+    "Assessment.dc.html",
+    "ResultPass.dc.html",
+    "ResultFail.dc.html",
+    "Dashboard.dc.html",
+    "CandidateProfile.dc.html",
+    "Ranking.dc.html",
+    "Interviews.dc.html",
+    "JobBuilder.dc.html",
+    "System.dc.html",
+    "AIEngine.dc.html",
+    "Scheduler.dc.html",
+    "Settings.dc.html"
+  ],
+  "pages": [],
+  "title": "منصة توظيف الدهانات"
+}

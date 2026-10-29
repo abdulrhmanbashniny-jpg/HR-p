@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ملف المرشح وتقييم اللجنة</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F1EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 1400px; box-sizing: border-box; background: #F3F1EC; display: flex; position: relative">
+
+<aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="6">
+<a href="{{n.href}}" style="height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; font-size: 14px; font-weight: 500; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #F2C14E">{{n.badge}}</span></a>
+</sc-for>
+</nav>
+</aside>
+
+<main style="flex-grow: 1; padding: 28px 36px; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 24px 28px; display: flex; align-items: center; gap: 20px">
+<span style="width: 64px; height: 64px; border-radius: 18px; background: #C8553D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 26px">م</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: center; gap: 10px">
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 26px">محمد عبدالله القحطاني</h1>
+<span style="padding: 4px 10px; border-radius: 999px; background: #FBF3DE; color: #5A4410; font-size: 12px; font-weight: 600">مرحلة المقابلة</span>
+</div>
+<span style="font-size: 14px; color: #4A4D52">فني دهانات أول · PT-101 · قدّم 24 سبتمبر · <span dir="ltr" style="font-family: 'IBM Plex Mono', monospace">+966 55 123 4567</span> · m.alqahtani@email.com</span>
+</div>
+<div style="display: flex; gap: 8px">
+<button style="height: 46px; padding: 0 16px; border-radius: 12px; border: 1.5px solid #D6D0C6; background: #FFFFFF; font: inherit; font-weight: 600; font-size: 14px; color: #7E2F1F">استبعاد</button>
+<a href="Interviews.dc.html" style="height: 46px; padding: 0 16px; border-radius: 12px; border: 1.5px solid #17191C; display: flex; align-items: center; font-weight: 600; font-size: 14px; color: #17191C; text-decoration: none">رسالة واتساب</a>
+<a href="Interviews.dc.html" style="height: 46px; padding: 0 18px; border-radius: 12px; background: #17191C; color: #FFFFFF; display: flex; align-items: center; font-weight: 600; font-size: 14px; text-decoration: none">جدولة مقابلة</a>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; align-items: start">
+<div style="grid-column: span 3; display: flex; flex-direction: column; gap: 20px">
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9A6A08" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>
+<span style="font-weight: 600; font-size: 17px">تحليل الذكاء الاصطناعي</span>
+<span style="margin-right: auto; font-size: 12px; color: #5E6166">برومنت PT-101 · الإصدار 3 · <a href="AIEngine.dc.html">كيف يتم التحليل؟</a></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="padding: 16px; border-radius: 14px; background: #E9F1EC; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #1E4A3C">درجة الاختبار</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600">78%</span></div>
+<div style="padding: 16px; border-radius: 14px; background: #F8F6F2; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #4A4D52">مطابقة السيرة الذاتية</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600">82%</span></div>
+<div style="padding: 16px; border-radius: 14px; background: #F8F6F2; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 12px; color: #4A4D52">الثقة في التقييم</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 600">عالية</span></div>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.9; color: #3A3D42">مرشح قوي فنياً في تجهيز الأسطح وأدوات التطبيق، وحساباته للكميات دقيقة. إجابته عن معالجة الرطوبة جيدة لكنها أغفلت اختبار مصدر التسرّب. أعماله المرفقة تُظهر تشطيباً نظيفاً في الدهانات الديكورية.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px">
+<span style="padding: 6px 12px; border-radius: 8px; background: #E9F1EC; color: #1E4A3C">+ تجهيز الأسطح</span>
+<span style="padding: 6px 12px; border-radius: 8px; background: #E9F1EC; color: #1E4A3C">+ حساب الكميات</span>
+<span style="padding: 6px 12px; border-radius: 8px; background: #E9F1EC; color: #1E4A3C">+ أجهزة الرش</span>
+<span style="padding: 6px 12px; border-radius: 8px; background: #F8E6E0; color: #7E2F1F">− تشخيص الرطوبة</span>
+<span style="padding: 6px 12px; border-radius: 8px; background: #F8E6E0; color: #7E2F1F">− إدارة الفريق</span>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; overflow: hidden">
+<div style="padding: 18px 24px; display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 600; font-size: 17px">الإجابات وتقييم كل سؤال</span><span style="font-size: 13px; color: #5E6166">10 أسئلة · 21:18 دقيقة</span></div>
+<sc-for list="{{answers}}" as="q" hint-placeholder-count="6">
+<div style="padding: 16px 24px; border-top: 1px solid #F0EDE7; display: flex; gap: 16px; align-items: flex-start">
+<span style="flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; background: #F3F1EC; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px">{{q.n}}</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 14px; font-weight: 600">{{q.q}}</span>
+<span style="font-size: 13px; color: #3A3D42; line-height: 1.7">{{q.a}}</span>
+<span style="font-size: 12px; color: #6B5210; line-height: 1.7">AI: {{q.why}}</span>
+</div>
+<span style="flex-shrink: 0; padding: 4px 10px; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; background: {{q.bg}}; color: {{q.fg}}">{{q.s}}/10</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="grid-column: span 2; display: flex; flex-direction: column; gap: 20px">
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 600; font-size: 17px">تقييمك كعضو لجنة</span><span style="font-size: 12px; color: #5E6166">من 1 إلى 5</span></div>
+<sc-for list="{{crit}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 14px"><span style="font-weight: 500">{{c.label}}</span><span style="font-size: 12px; color: #5E6166">الوزن {{c.w}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{c.opts}}" as="o" hint-placeholder-count="5">
+<button onClick="{{o.pick}}" aria-label="{{c.label}} {{o.v}}" style="height: 44px; border-radius: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; cursor: pointer; background: {{o.bg}}; color: {{o.fg}}; border: 1.5px solid {{o.bd}}">{{o.v}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<label style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 14px; font-weight: 500">ملاحظات</span>
+<textarea placeholder="انطباعك عن المرشح بعد المقابلة…" style="height: 90px; box-sizing: border-box; padding: 12px; border: 1.5px solid #D6D0C6; border-radius: 12px; font: inherit; font-size: 14px; resize: none"></textarea></label>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 14px; background: #17191C; color: #FFFFFF">
+<span style="font-size: 13px; color: #CFD2D6">تقييمك الموزون</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 24px; color: #F2C14E">{{mine}}%</span>
+</div>
+<button style="height: 50px; border-radius: 12px; border: 0; background: #C8553D; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px">اعتماد التقييم</button>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-weight: 600; font-size: 17px">تقييمات اللجنة</span>
+<sc-for list="{{members}}" as="m" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 34px; height: 34px; border-radius: 50%; background: #F3F1EC; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">{{m.i}}</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; font-size: 13px"><span style="font-weight: 600">{{m.name}}</span><span style="color: #5E6166; font-size: 12px">{{m.role}}</span></span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 15px">{{m.s}}</span>
+</div>
+</sc-for>
+<div style="padding: 14px; border-radius: 12px; background: #F8F6F2; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+<div style="display: flex; justify-content: space-between"><span style="color: #4A4D52">الدرجة النهائية = 40% AI + 60% اللجنة</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 16px">81.6</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #4A4D52">الترتيب الحالي</span><a href="Ranking.dc.html" style="font-weight: 700">#2 من 38</a></div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="width: 44px; height: 54px; border-radius: 6px; background: #FBEAE5; color: #A8412B; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600">PDF</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; font-size: 13px"><span style="font-weight: 600">CV_Mohammed_Alqahtani.pdf</span><span style="color: #5E6166">السيرة الذاتية · 1.2 MB · صفحتان</span></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button onClick="{{openCv}}" style="height: 46px; border-radius: 12px; border: 0; background: #17191C; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+عرض السيرة</button>
+<a href="#" download="CV_Mohammed_Alqahtani.pdf" style="height: 46px; border-radius: 12px; border: 1.5px solid #17191C; color: #17191C; text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12"></path><path d="M7 11l5 5 5-5"></path><path d="M4 20h16"></path></svg>
+تحميل</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid #F0EDE7">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 13px; font-weight: 600">ما استخرجه الذكاء الاصطناعي من السيرة</span><span style="font-family: 'IBM Plex Mono', monospace; font-weight: 700; font-size: 14px">82%</span></div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px">
+<span style="padding: 4px 9px; border-radius: 7px; background: #F3F1EC">6 سنوات خبرة</span>
+<span style="padding: 4px 9px; border-radius: 7px; background: #F3F1EC">Airless</span>
+<span style="padding: 4px 9px; border-radius: 7px; background: #F3F1EC">إيبوكسي</span>
+<span style="padding: 4px 9px; border-radius: 7px; background: #F3F1EC">OSHA 10</span>
+<span style="padding: 4px 9px; border-radius: 7px; background: #F3F1EC">دبلوم فني</span>
+<span style="padding: 4px 9px; border-radius: 7px; background: #FBF3DE; color: #5A4410">فجوة 7 أشهر (2022)</span>
+</div>
+<a href="AIEngine.dc.html" style="font-size: 12px; font-weight: 600">تفاصيل المطابقة مع كل متطلب</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<sc-if value="{{showCv}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; background: rgba(23,25,28,0.55); display: flex; align-items: center; justify-content: center; padding: 48px">
+<div style="width: 900px; height: 1200px; background: #FFFFFF; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,0.3)">
+<div style="height: 64px; padding: 0 20px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #E3DED5">
+<span style="flex-grow: 1; font-weight: 600; font-size: 15px">CV_Mohammed_Alqahtani.pdf</span>
+<span style="font-size: 13px; color: #5E6166">صفحة 1 من 2</span>
+<a href="#" download="CV_Mohammed_Alqahtani.pdf" style="height: 40px; padding: 0 14px; border-radius: 10px; background: #17191C; color: #FFFFFF; display: flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none">تحميل</a>
+<button onClick="{{closeCv}}" aria-label="إغلاق" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #E3DED5; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#17191C" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<div style="flex-grow: 1; background: #E9E6E0; padding: 28px; display: flex; gap: 20px; overflow: hidden">
+<div style="flex-grow: 1; background: #FFFFFF; border-radius: 6px; padding: 48px 52px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.08)">
+<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 28px">محمد عبدالله القحطاني</span><span style="font-size: 14px; color: #4A4D52">فني دهانات · الرياض</span></div>
+<div style="height: 1px; background: #E3DED5"></div>
+<span style="font-weight: 700; font-size: 15px; padding: 2px 6px; background: #FBF3DE; align-self: flex-start">الخبرات</span>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="height: 12px; width: 70%; background: #EFEBE4; border-radius: 3px"></div><div style="height: 12px; width: 92%; background: #EFEBE4; border-radius: 3px"></div><div style="height: 12px; width: 85%; background: #EFEBE4; border-radius: 3px"></div>
+<div style="height: 12px; width: 60%; background: #EFEBE4; border-radius: 3px"></div><div style="height: 12px; width: 88%; background: #EFEBE4; border-radius: 3px"></div>
+</div>
+<span style="font-weight: 700; font-size: 15px; padding: 2px 6px; background: #FBF3DE; align-self: flex-start">المهارات</span>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 12px; width: 80%; background: #EFEBE4; border-radius: 3px"></div><div style="height: 12px; width: 55%; background: #EFEBE4; border-radius: 3px"></div></div>
+<span style="font-weight: 700; font-size: 15px; padding: 2px 6px; background: #FBF3DE; align-self: flex-start">الشهادات</span>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="height: 12px; width: 65%; background: #EFEBE4; border-radius: 3px"></div></div>
+<span style="margin-top: auto; font-size: 12px; color: #5E6166">[معاينة ملف PDF الفعلي تظهر هنا]</span>
+</div>
+<div style="width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; font-weight: 700">تظليل الذكاء الاصطناعي</span>
+<span style="font-size: 12px; line-height: 1.8; color: #3A3D42; padding: 10px; background: #FFFFFF; border-radius: 10px">الأقسام المظلّلة هي ما اعتمد عليه التحليل في حساب المطابقة.</span>
+<span style="font-size: 12px; line-height: 1.8; padding: 10px; background: #E9F1EC; color: #1E4A3C; border-radius: 10px">✓ خبرة 6 سنوات<br>✓ Airless<br>✓ OSHA 10</span>
+<span style="font-size: 12px; line-height: 1.8; padding: 10px; background: #FBF3DE; color: #5A4410; border-radius: 10px">! فجوة 7 أشهر<br>! قيادة فريق غير موضحة</span>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { r: { 0: 4, 1: 4, 2: 5, 3: 3, 4: 4 }, cv: false }; }
+  renderVals() {
+    const navItems = [
+      ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
+      ['ترتيب المرشحين', 'Ranking.dc.html', ''], ['ترتيب المواعيد', 'Scheduler.dc.html', '10'], ['رسائل واتساب', 'Interviews.dc.html', '5'],
+      ['محرك التحليل AI', 'AIEngine.dc.html', ''], ['الإعدادات والتكاملات', 'Settings.dc.html', '']
+    ];
+    const active = 'CandidateProfile.dc.html';
+    const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
+    const C = [['المهارة الفنية', 0.3], ['السلامة المهنية', 0.2], ['الخبرة العملية', 0.2], ['التواصل', 0.15], ['الملاءمة للفريق', 0.15]];
+    const r = this.state.r;
+    const crit = C.map(([label, w], ci) => ({
+      label, w: Math.round(w * 100) + '%',
+      opts: [1, 2, 3, 4, 5].map((v) => {
+        const on = r[ci] === v;
+        return { v, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ r: Object.assign({}, r, { [ci]: v }) }) };
+      })
+    }));
+    const mine = Math.round(C.reduce((s, [, w], ci) => s + (r[ci] || 0) / 5 * w, 0) * 100);
+    const answers = [
+      ['1', 'الخطوة الأولى قبل دهان لياسة جديدة', 'التأكد من جفاف السطح ثم طبقة أساس', 'إجابة صحيحة.', 10],
+      ['3', 'حساب كمية الدهان لطبقتين (48 م²)', '8 لترات', 'الحساب صحيح: 48 × 2 ÷ 12 = 8.', 10],
+      ['4', 'معالجة تقشّر الدهان في حمام رطب', 'كشط الطبقة المتقشرة، معالجة بمانع رطوبة، أساس مقاوم، ثم دهان…', 'ترتيب جيد، لكنه لم يذكر فحص مصدر التسرّب أولاً.', 6],
+      ['6', 'إرفاق نماذج من الأعمال', '3 صور (قبل/بعد + دهان ديكوري)', 'جودة تشطيب واضحة وحواف نظيفة.', 8],
+      ['8', 'اختلاف اللون عن العيّنة المعتمدة', 'أوضح للعميل وأطلب موافقة كتابية قبل التعديل', 'تصرّف مهني صحيح.', 9],
+      ['9', 'نسبة التخفيف 10% لأربعة لترات', '350 مل', 'الإجابة الصحيحة 400 مل.', 0]
+    ].map(([n, q, a, why, s]) => ({ n, q, a, why, s, bg: s >= 6 ? '#E9F1EC' : '#F8E6E0', fg: s >= 6 ? '#1E4A3C' : '#7E2F1F' }));
+    const members = [
+      { i: 'س', name: 'سارة المطيري', role: 'رئيسة اللجنة', s: '86%' },
+      { i: 'أ', name: 'م. أحمد الحربي', role: 'مدير العمليات', s: '82%' },
+      { i: 'ل', name: 'لمى السبيعي', role: 'الموارد البشرية', s: 'بانتظار التقييم' }
+    ];
+    return { nav, crit, mine, answers, members, showCv: this.state.cv, openCv: () => this.setState({ cv: true }), closeCv: () => this.setState({ cv: false }) };
+  }
+}
+</script>
+</body>
+</html>

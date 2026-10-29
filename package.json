@@ -1,0 +1,22 @@
+{
+  "name": "smart-hr-recruitment-platform",
+  "version": "1.0.0",
+  "description": "منصة توظيف الكفاءات والدهانات — نظام التوظيف وإدارة لجان التقييم بالذكاء الاصطناعي",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "hr",
+    "recruitment",
+    "platform",
+    "ai-engine",
+    "assessment",
+    "dashboard",
+    "arabic-ui",
+    "rtl"
+  ],
+  "author": "",
+  "license": "MIT"
+}

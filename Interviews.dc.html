@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>رسائل واتساب — الرابط الهجين</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F1EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 1450px; box-sizing: border-box; background: #F3F1EC; display: flex">
+
+<aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<a href="{{n.href}}" style="height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; font-size: 14px; font-weight: 500; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #F2C14E">{{n.badge}}</span></a>
+</sc-for>
+</nav>
+</aside>
+
+<main style="flex-grow: 1; padding: 28px 36px; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 28px">رسائل واتساب</h1>
+<span style="font-size: 14px; color: #5E6166">رابط هجين: الزر يفتح واتساب الخاص بك والرسالة مكتوبة جاهزة من القالب — أنت تضغط إرسال فقط</span>
+</div>
+<a href="Scheduler.dc.html" style="height: 46px; padding: 0 18px; border-radius: 12px; border: 1.5px solid #17191C; display: flex; align-items: center; font-weight: 600; font-size: 14px; color: #17191C; text-decoration: none">ترتيب المواعيد</a>
+</div>
+
+<div style="background: #17191C; color: #FFFFFF; border-radius: 20px; padding: 22px 26px; display: flex; align-items: center; gap: 22px">
+<span style="width: 56px; height: 56px; border-radius: 16px; background: #C8553D; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg></span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 12px; color: #F2C14E; font-weight: 600">حان موعد المقابلة الآن · 10:00</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 600; font-size: 20px">ريم الشهري — فني مختبر مطابقة ألوان</span>
+<span style="font-size: 13px; color: #CFD2D6">رابط القاعة جاهز (أُنشئ تلقائياً): <span dir="ltr" style="font-family: 'IBM Plex Mono', monospace; color: #FFFFFF">meet.google.com/rqa-mkfe-twd</span></span>
+</div>
+<sc-if value="{{alertOpen}}" hint-placeholder-val="{{true}}">
+<button onClick="{{sendRoom}}" style="height: 54px; padding: 0 22px; border-radius: 14px; border: 0; background: #F2C14E; color: #17191C; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg>
+فتح واتساب وإرسال رابط القاعة</button>
+</sc-if>
+<sc-if value="{{alertDone}}" hint-placeholder-val="{{false}}">
+<span style="height: 54px; padding: 0 22px; border-radius: 14px; background: #2F5D50; display: flex; align-items: center; font-weight: 700; font-size: 15px">✓ أُرسل رابط القاعة</span>
+</sc-if>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{flow}}" as="f" hint-placeholder-count="5">
+<button onClick="{{f.pick}}" style="text-align: right; padding: 16px; border-radius: 14px; font: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 8px; background: {{f.bg}}; color: {{f.fg}}; border: 1.5px solid {{f.bd}}">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; opacity: 0.85">{{f.when}}</span>
+<span style="font-weight: 600; font-size: 15px">{{f.title}}</span>
+<span style="font-size: 12px; opacity: 0.85">{{f.stat}}</span>
+</button>
+</sc-for>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; align-items: start">
+<div style="grid-column: span 5; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 600; font-size: 16px">قالب: {{cur.title}}</span><span style="font-size: 12px; color: #5E6166">يظهر زره {{cur.when}}</span></div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{vars}}" as="v" hint-placeholder-count="6">
+<span style="padding: 5px 10px; border-radius: 8px; background: #FBF3DE; color: #5A4410; font-size: 12px; font-family: 'IBM Plex Mono', monospace">{{v}}</span>
+</sc-for>
+</div>
+<textarea style="height: 200px; box-sizing: border-box; padding: 14px; border: 1.5px solid #D6D0C6; border-radius: 12px; font: inherit; font-size: 14px; line-height: 1.9; resize: none">{{cur.tpl}}</textarea>
+<button style="height: 48px; border-radius: 12px; border: 0; background: #17191C; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 14px">حفظ القالب</button>
+</div>
+
+<div style="grid-column: span 3; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<div style="width: 270px; height: 540px; border-radius: 40px; background: #17191C; padding: 10px; box-sizing: border-box">
+<div style="height: 100%; border-radius: 32px; background: #ECE5DA; overflow: hidden; display: flex; flex-direction: column">
+<div style="height: 60px; background: #1F4E43; color: #FFFFFF; display: flex; align-items: center; gap: 10px; padding: 0 14px">
+<span style="width: 32px; height: 32px; border-radius: 50%; background: #A9C7BC; color: #17191C; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px">{{curName}}</span>
+<span style="display: flex; flex-direction: column; font-size: 13px"><span style="font-weight: 600">{{curFull}}</span><span dir="ltr" style="font-size: 11px; color: #C9DCD5">+966 55 123 4567</span></span>
+</div>
+<div style="flex-grow: 1"></div>
+<div style="padding: 10px; display: flex; gap: 8px; align-items: flex-end">
+<div style="flex-grow: 1; background: #FFFFFF; border-radius: 16px; padding: 10px 12px; font-size: 12px; line-height: 1.8; white-space: pre-line; max-height: 330px; overflow: hidden">{{cur.preview}}</div>
+<span style="width: 38px; height: 38px; border-radius: 50%; background: #1F6B55; flex-shrink: 0; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12L4 4l3 8-3 8z"></path></svg></span>
+</div>
+</div>
+</div>
+<span style="font-size: 12px; color: #4A4D52; text-align: center">هكذا تفتح في واتساب المُرسِل — الرسالة جاهزة في خانة الكتابة</span>
+</div>
+
+<div style="grid-column: span 4; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-weight: 600; font-size: 16px">كيف يعمل الرابط الهجين</span>
+<sc-for list="{{how}}" as="h" hint-placeholder-count="4">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px; background: #F3F1EC; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600">{{h.n}}</span>
+<span style="font-size: 13px; line-height: 1.8; color: #3A3D42">{{h.t}}</span>
+</div>
+</sc-for>
+<div style="padding: 12px; border-radius: 12px; background: #F8F6F2; font-size: 12px; line-height: 1.8; color: #3A3D42">بدون اشتراك WhatsApp Business API وبدون موافقة على القوالب — الرسالة تخرج من رقمك أنت.</div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; overflow: hidden">
+<div style="padding: 16px 22px; display: flex; justify-content: space-between; align-items: center">
+<span style="font-weight: 600; font-size: 16px">طابور الإرسال ({{pending}} بانتظارك)</span>
+<button onClick="{{openNext}}" style="height: 42px; padding: 0 16px; border-radius: 10px; border: 0; background: #C8553D; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer">فتح التالي في واتساب</button>
+</div>
+<div style="display: grid; grid-template-columns: 1.5fr 1.3fr 1.4fr 1.3fr 1.2fr 1.1fr; padding: 10px 22px; background: #F8F6F2; font-size: 12px; font-weight: 600; color: #5E6166"><span>المرشح</span><span>الجوال</span><span>الرسالة</span><span>الموعد</span><span></span><span>الحالة</span></div>
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: 1.5fr 1.3fr 1.4fr 1.3fr 1.2fr 1.1fr; padding: 10px 22px; border-top: 1px solid #F0EDE7; font-size: 13px; align-items: center">
+<span style="font-weight: 600">{{q.name}}</span>
+<span dir="ltr" style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; text-align: right">{{q.phone}}</span>
+<span>{{q.msg}}</span>
+<span style="font-size: 12px; color: #3A3D42">{{q.at}}</span>
+<button onClick="{{q.send}}" style="justify-self: start; height: 38px; padding: 0 12px; border-radius: 10px; border: 1.5px solid #1F6B55; background: #FFFFFF; color: #1E4A3C; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg>
+فتح واتساب</button>
+<span style="justify-self: start; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{q.bg}}; color: {{q.fg}}">{{q.st}}</span>
+</div>
+</sc-for>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1450}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { f: 0, sent: {}, room: false }; }
+  renderVals() {
+    const st = this.state;
+    const navItems = [
+      ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
+      ['ترتيب المرشحين', 'Ranking.dc.html', ''], ['ترتيب المواعيد', 'Scheduler.dc.html', '10'], ['رسائل واتساب', 'Interviews.dc.html', '5'],
+      ['محرك التحليل AI', 'AIEngine.dc.html', ''], ['الإعدادات والتكاملات', 'Settings.dc.html', '']
+    ];
+    const active = 'Interviews.dc.html';
+    const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
+    const F = [
+      { when: 'بعد تعيين الموعد', title: 'دعوة المقابلة', stat: '58 أُرسلت · 6 بانتظارك',
+        tpl: 'مرحباً {الاسم}،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة {الوظيفة} في [اسم الشركة].\nموعد مقابلتك: {موعد_المقابلة}\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: {رابط_الحجز}',
+        preview: 'مرحباً محمد،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة فني دهانات أول في [اسم الشركة].\nموعد مقابلتك: الأحد 4 أكتوبر · 12:30\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: hr.[company].com/b/7KQ2' },
+      { when: 'بعد تأكيد المرشح', title: 'تأكيد الموعد', stat: '52 أُرسلت',
+        tpl: 'تم تأكيد مقابلتك يا {الاسم}.\nالموعد: {موعد_المقابلة} — المدة 30 دقيقة.\nتأكد من اتصال إنترنت جيد وكاميرا تعمل.',
+        preview: 'تم تأكيد مقابلتك يا محمد.\nالموعد: الأحد 4 أكتوبر · 12:30 — المدة 30 دقيقة.\nتأكد من اتصال إنترنت جيد وكاميرا تعمل.' },
+      { when: 'قبل الموعد بيوم', title: 'تذكير', stat: '41 أُرسلت',
+        tpl: 'تذكير: مقابلتك لوظيفة {الوظيفة} غداً {موعد_المقابلة}.\nنتطلع للقائك.',
+        preview: 'تذكير: مقابلتك لوظيفة فني دهانات أول غداً الأحد 4 أكتوبر · 12:30.\nنتطلع للقائك.' },
+      { when: 'عند حلول الموعد', title: 'رابط القاعة', stat: '31 أُرسلت · 29 حضروا',
+        tpl: 'حان موعد مقابلتك يا {الاسم}.\nالقاعة الافتراضية جاهزة واللجنة بانتظارك:\n{رابط_القاعة}',
+        preview: 'حان موعد مقابلتك يا محمد.\nالقاعة الافتراضية جاهزة واللجنة بانتظارك:\nmeet.google.com/kdw-pqzt-ymc' },
+      { when: 'بعد المقابلة', title: 'شكر ومتابعة', stat: '29 أُرسلت',
+        tpl: 'شكراً لحضورك مقابلة {الوظيفة} يا {الاسم}.\nسنبلغك بالقرار النهائي خلال 7 أيام عمل.',
+        preview: 'شكراً لحضورك مقابلة فني دهانات أول يا محمد.\nسنبلغك بالقرار النهائي خلال 7 أيام عمل.' }
+    ];
+    const flow = F.map((f, k) => { const on = k === st.f; return { when: f.when, title: f.title, stat: f.stat, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ f: k }) }; });
+    const Q = [
+      ['m', 'محمد القحطاني', '+966 55 123 4567', 'دعوة المقابلة', 'الأحد 4 أكتوبر · 12:30'],
+      ['h', 'حسن اليامي', '+966 50 884 2210', 'دعوة المقابلة', 'الأحد 4 أكتوبر · 13:10'],
+      ['t', 'تركي الحارثي', '+966 54 310 7782', 'دعوة المقابلة', 'الأحد 4 أكتوبر · 13:50'],
+      ['n', 'نورة الزهراني', '+966 56 402 1198', 'تذكير', 'غداً · 13:00'],
+      ['b', 'بندر العنزي', '+966 53 775 0041', 'دعوة المقابلة', 'الأحد 4 أكتوبر · 14:30']
+    ];
+    const queue = Q.map(([id, name, phone, msg, at]) => {
+      const done = !!st.sent[id];
+      return { name, phone, msg, at, st: done ? 'أُرسلت ✓' : 'لم تُرسل', bg: done ? '#E9F1EC' : '#FBF3DE', fg: done ? '#1E4A3C' : '#5A4410',
+        send: () => this.setState({ sent: Object.assign({}, st.sent, { [id]: true }) }) };
+    });
+    const nextId = (Q.find(([id]) => !st.sent[id]) || [])[0];
+    return {
+      nav, flow, cur: F[st.f], queue, curName: 'م', curFull: 'محمد القحطاني',
+      vars: ['{الاسم}', '{الوظيفة}', '{موعد_المقابلة}', '{رابط_الحجز}', '{رابط_القاعة}', '{رقم_الطلب}'],
+      how: [
+        { n: '1', t: 'تضغط زر «فتح واتساب» بجانب المرشح.' },
+        { n: '2', t: 'النظام يعبّي القالب ببياناته ويبني رابط wa.me برقمه.' },
+        { n: '3', t: 'يفتح واتساب الخاص بك (ويب أو تطبيق) على محادثته والرسالة مكتوبة.' },
+        { n: '4', t: 'تضغط إرسال، ويتسجّل في اللوحة «أُرسلت» مع الوقت واسم المُرسِل.' }
+      ],
+      pending: Q.filter(([id]) => !st.sent[id]).length,
+      openNext: () => { if (nextId) this.setState({ sent: Object.assign({}, st.sent, { [nextId]: true }) }); },
+      alertOpen: !st.room, alertDone: st.room, sendRoom: () => this.setState({ room: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

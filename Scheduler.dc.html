@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>ترتيب مواعيد المقابلات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F1EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 1600px; box-sizing: border-box; background: #F3F1EC; display: flex">
+
+<aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<a href="{{n.href}}" style="height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; font-size: 14px; font-weight: 500; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #F2C14E">{{n.badge}}</span></a>
+</sc-for>
+</nav>
+</aside>
+
+<main style="flex-grow: 1; padding: 28px 36px; display: flex; flex-direction: column; gap: 20px; min-width: 0">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 28px">ترتيب مواعيد المقابلات</h1>
+<span style="font-size: 14px; color: #5E6166">حدّد الفترة ووقت الدوام ومدة المقابلة والبريك — والنظام يولّد المواعيد ويوزّعها ويُنشئ رابط القاعة لكل مقابلة</span>
+</div>
+</div>
+
+<div style="display: flex; gap: 8px">
+<sc-for list="{{jobs}}" as="j" hint-placeholder-count="6">
+<button onClick="{{j.pick}}" style="height: 40px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; background: {{j.bg}}; color: {{j.fg}}; border: 1px solid {{j.bd}}"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{j.sw}}"></span>{{j.label}}</button>
+</sc-for>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; align-items: start">
+
+<div style="grid-column: span 5; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<span style="font-weight: 600; font-size: 17px">إعدادات المواعيد — فني دهانات أول</span>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600; color: #4A4D52">طريقة الحجز</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; padding: 4px; background: #F3F1EC; border-radius: 12px">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button onClick="{{m.pick}}" style="min-height: 44px; border: 0; border-radius: 9px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; background: {{m.bg}}; color: {{m.fg}}; box-shadow: {{m.sh}}">{{m.label}}</button>
+</sc-for>
+</div>
+<span style="font-size: 12px; color: #5E6166; line-height: 1.7">{{modeHint}}</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 600; color: #4A4D52">من تاريخ</span>
+<input type="date" value="2026-10-04" style="height: 44px; box-sizing: border-box; padding: 0 12px; border: 1.5px solid #D6D0C6; border-radius: 10px; font: inherit; font-size: 14px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 600; color: #4A4D52">إلى تاريخ</span>
+<input type="date" value="2026-10-10" style="height: 44px; box-sizing: border-box; padding: 0 12px; border: 1.5px solid #D6D0C6; border-radius: 10px; font: inherit; font-size: 14px"></label>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 600; color: #4A4D52">أيام المقابلات</span>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<button onClick="{{d.flip}}" aria-label="{{d.name}}" style="height: 54px; border-radius: 10px; font: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; background: {{d.bg}}; color: {{d.fg}}; border: 1.5px solid {{d.bd}}"><span style="font-size: 11px">{{d.short}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600">{{d.d}}</span></button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{steppers}}" as="s" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600; color: #4A4D52">{{s.label}}</span>
+<div style="height: 46px; display: flex; align-items: center; border: 1.5px solid #D6D0C6; border-radius: 10px; overflow: hidden">
+<button onClick="{{s.inc}}" aria-label="زيادة {{s.label}}" style="width: 44px; height: 100%; border: 0; background: #F8F6F2; font: inherit; font-size: 20px; cursor: pointer">+</button>
+<span style="flex-grow: 1; text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600">{{s.value}}</span>
+<button onClick="{{s.dec}}" aria-label="إنقاص {{s.label}}" style="width: 44px; height: 100%; border: 0; background: #F8F6F2; font: inherit; font-size: 20px; cursor: pointer">−</button>
+</div>
+</div>
+</sc-for>
+</div>
+
+<button onClick="{{flipPrayer}}" style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; border: 0; background: transparent; font: inherit; font-size: 14px; cursor: pointer; padding: 0; text-align: right">
+<span>استثناء وقت صلاة الظهر (12:00 – 12:30)</span>
+<span style="width: 44px; height: 26px; border-radius: 13px; display: flex; align-items: center; padding: 3px; box-sizing: border-box; justify-content: {{prJc}}; background: {{prBg}}"><span style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF"></span></span>
+</button>
+
+<div style="display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: #F8F6F2">
+<span style="width: 40px; height: 40px; border-radius: 10px; background: #FFFFFF; border: 1px solid #E3DED5; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17191C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="M16 10l5-3v10l-5-3"></path></svg></span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; font-size: 13px"><span style="font-weight: 600">Google Meet · hr@[company].com</span><span style="color: #1E4A3C">متصل · رابط قاعة فريد يُنشأ تلقائياً لكل موعد</span></span>
+<a href="Settings.dc.html" style="font-size: 13px; font-weight: 600">تغيير</a>
+</div>
+</div>
+
+<div style="grid-column: span 7; display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<div style="background: #17191C; color: #FFFFFF; border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #B9BCC1">مواعيد في اليوم</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 32px; color: #F2C14E">{{perDay}}</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #5E6166">السعة الكلية ({{dayCount}} أيام)</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 32px">{{capacity}}</span></div>
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: #5E6166">المؤهلون للمقابلة</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 32px">10 <span style="font-size: 13px; font-family: 'IBM Plex Sans Arabic', sans-serif; font-weight: 600; color: {{fitC}}">{{fitLabel}}</span></span></div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-weight: 600; font-size: 16px">معاينة مواعيد {{firstDay}}</span><span style="font-size: 12px; color: #5E6166">{{slotRule}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{timeline}}" as="t" hint-placeholder-count="7">
+<div style="height: 64px; border-radius: 12px; padding: 10px 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: {{t.bg}}; color: {{t.fg}}; border: 1.5px solid {{t.bd}}">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 600">{{t.time}}</span>
+<span style="font-size: 12px">{{t.who}}</span>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{prayer}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 12px; color: #5A4410; background: #FBF3DE; padding: 8px 12px; border-radius: 8px; align-self: flex-start">12:00 – 12:30 مستثناة لصلاة الظهر</span>
+</sc-if>
+<div style="display: flex; gap: 10px; padding-top: 8px">
+<button onClick="{{auto}}" style="flex-grow: 1; height: 52px; border-radius: 12px; border: 0; background: #C8553D; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer">توزيع المواعيد تلقائياً حسب الترتيب</button>
+<button onClick="{{reset}}" style="height: 52px; padding: 0 18px; border-radius: 12px; border: 1.5px solid #D6D0C6; background: #FFFFFF; font: inherit; font-weight: 600; font-size: 14px; cursor: pointer">إعادة ضبط</button>
+</div>
+</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start">
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; overflow: hidden">
+<div style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #E9F1EC">
+<span style="font-weight: 700; font-size: 16px; color: #1E4A3C">لديهم موعد ({{nA}})</span>
+<a href="Interviews.dc.html" style="font-size: 13px; font-weight: 600">إرسال الدعوات عبر واتساب</a>
+</div>
+<sc-for list="{{assignedRows}}" as="r" hint-placeholder-count="4">
+<div style="padding: 12px 20px; border-top: 1px solid #F0EDE7; display: flex; align-items: center; gap: 12px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5E6166; width: 22px">#{{r.rank}}</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; font-size: 14px"><span style="font-weight: 600">{{r.name}}</span><span style="font-size: 12px; color: #4A4D52">{{r.when}}</span></span>
+<span style="padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; background: {{r.pbg}}; color: {{r.pfg}}">{{r.room}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 20px; overflow: hidden">
+<div style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #FBF3DE">
+<span style="font-weight: 700; font-size: 16px; color: #5A4410">بدون موعد ({{nU}})</span>
+<span style="font-size: 12px; color: #5A4410">مرتّبون حسب الدرجة النهائية</span>
+</div>
+<sc-for list="{{unassignedRows}}" as="r" hint-placeholder-count="6">
+<div style="padding: 10px 20px; border-top: 1px solid #F0EDE7; display: flex; align-items: center; gap: 12px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #5E6166; width: 22px">#{{r.rank}}</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; font-size: 14px"><span style="font-weight: 600">{{r.name}}</span><span style="font-size: 12px; color: #4A4D52">درجة AI {{r.score}}%</span></span>
+<button onClick="{{r.assign}}" style="height: 40px; padding: 0 14px; border-radius: 10px; border: 1.5px solid #17191C; background: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">تعيين أقرب موعد</button>
+</div>
+</sc-for>
+<sc-if value="{{allDone}}" hint-placeholder-val="{{false}}">
+<div style="padding: 28px 20px; border-top: 1px solid #F0EDE7; text-align: center; font-size: 14px; color: #1E4A3C">كل المؤهلين لديهم مواعيد</div>
+</sc-if>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1600}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { job: 'PT-101', mode: 0, start: 600, end: 900, dur: 30, brk: 10, prayer: true, on: { 0: true, 1: true, 2: true, 3: true, 4: true, 5: false, 6: false }, assigned: ['y', 'o', 's', 'm'] };
+  }
+  renderVals() {
+    const st = this.state;
+    const navItems = [
+      ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
+      ['ترتيب المرشحين', 'Ranking.dc.html', ''], ['ترتيب المواعيد', 'Scheduler.dc.html', '10'], ['رسائل واتساب', 'Interviews.dc.html', '5'],
+      ['محرك التحليل AI', 'AIEngine.dc.html', ''], ['الإعدادات والتكاملات', 'Settings.dc.html', '']
+    ];
+    const active = 'Scheduler.dc.html';
+    const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
+    const J = [['PT-101', 'فني دهانات أول', '#C8553D'], ['PM-204', 'مشرف مواقع', '#2F5D50'], ['SL-310', 'مندوب مبيعات', '#E0A21B'], ['QC-412', 'مختبر ألوان', '#3B5B8C'], ['WH-518', 'أمين مستودع', '#8A6E4B'], ['DS-605', 'مستشار ديكور', '#D9B3C2']];
+    const jobs = J.map(([id, label, sw]) => { const on = id === st.job; return { label, sw, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ job: id }) }; });
+    const modes = ['توزيع تلقائي من اللجنة', 'المرشح يختار عبر رابط الحجز'].map((label, k) => ({ label, bg: k === st.mode ? '#FFFFFF' : 'transparent', fg: k === st.mode ? '#17191C' : '#4A4D52', sh: k === st.mode ? '0 1px 3px rgba(23,25,28,0.12)' : 'none', pick: () => this.setState({ mode: k }) }));
+    const modeHint = st.mode === 0 ? 'النظام يوزّع المواعيد المتاحة على المرشحين حسب ترتيبهم، ثم ترسل الدعوة بزر واتساب.' : 'يصل المرشح رابط حجز في رسالة واتساب، يختار منه موعداً من المواعيد المتاحة فقط، ويُحجز له فوراً.';
+    const fmt = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+    const D = [['الأحد', 'أحد', 4], ['الاثنين', 'اثنين', 5], ['الثلاثاء', 'ثلاثاء', 6], ['الأربعاء', 'أربعاء', 7], ['الخميس', 'خميس', 8], ['الجمعة', 'جمعة', 9], ['السبت', 'سبت', 10]];
+    const days = D.map(([name, short, d], k) => { const on = !!st.on[k]; return { name, short, d, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#5E6166', bd: on ? '#17191C' : '#E3DED5', flip: () => this.setState({ on: Object.assign({}, st.on, { [k]: !on }) }) }; });
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+    const steppers = [
+      { label: 'بداية وقت المقابلات', value: fmt(st.start), inc: () => this.setState({ start: clamp(st.start + 30, 360, st.end - 60) }), dec: () => this.setState({ start: clamp(st.start - 30, 360, st.end - 60) }) },
+      { label: 'نهاية وقت المقابلات', value: fmt(st.end), inc: () => this.setState({ end: clamp(st.end + 30, st.start + 60, 1320) }), dec: () => this.setState({ end: clamp(st.end - 30, st.start + 60, 1320) }) },
+      { label: 'مدة المقابلة', value: st.dur + ' د', inc: () => this.setState({ dur: clamp(st.dur + 5, 10, 120) }), dec: () => this.setState({ dur: clamp(st.dur - 5, 10, 120) }) },
+      { label: 'البريك بين المقابلات', value: st.brk + ' د', inc: () => this.setState({ brk: clamp(st.brk + 5, 0, 60) }), dec: () => this.setState({ brk: clamp(st.brk - 5, 0, 60) }) }
+    ];
+    const slots = [];
+    let t = st.start;
+    while (t + st.dur <= st.end) {
+      if (st.prayer && t < 750 && t + st.dur > 720) { t = 750; continue; }
+      slots.push(t); t += st.dur + st.brk;
+    }
+    const onDays = D.map((x, k) => ({ name: x[0], d: x[2], k })).filter((x) => st.on[x.k]);
+    const all = [];
+    onDays.forEach((day) => slots.forEach((s) => all.push({ day, s })));
+    const C = [
+      ['y', 'يوسف المالكي', 88], ['o', 'عمر باوزير', 92], ['s', 'سلطان الشمري', 81], ['m', 'محمد القحطاني', 78], ['h', 'حسن اليامي', 74],
+      ['t', 'تركي الحارثي', 71], ['b', 'بندر العنزي', 69], ['z', 'زياد الرشيدي', 64], ['j', 'ماجد السهلي', 63], ['a', 'عبدالله الجهني', 61]
+    ].map(([id, name, score], k) => ({ id, name, score, rank: k + 1 }));
+    const byId = {}; C.forEach((c) => { byId[c.id] = c; });
+    const assignedRows = st.assigned.map((id, k) => {
+      const c = byId[id], slot = all[k];
+      return slot
+        ? { rank: c.rank, name: c.name, when: slot.day.name + ' ' + slot.day.d + ' أكتوبر · ' + fmt(slot.s) + ' – ' + fmt(slot.s + st.dur), room: 'رابط القاعة جاهز', pbg: '#E9F1EC', pfg: '#1E4A3C' }
+        : { rank: c.rank, name: c.name, when: 'لا توجد مواعيد كافية — وسّع الفترة أو الوقت', room: 'تجاوز السعة', pbg: '#F8E6E0', pfg: '#7E2F1F' };
+    });
+    const unassigned = C.filter((c) => st.assigned.indexOf(c.id) < 0);
+    const unassignedRows = unassigned.map((c) => ({ rank: c.rank, name: c.name, score: c.score, assign: () => this.setState({ assigned: st.assigned.concat([c.id]) }) }));
+    const firstDay = onDays[0];
+    const timeline = slots.map((s, k) => {
+      const idx = st.assigned[k];
+      const taken = firstDay && idx !== undefined;
+      return { time: fmt(s), who: taken ? byId[idx].name : 'متاح', bg: taken ? '#17191C' : '#FFFFFF', fg: taken ? '#FFFFFF' : '#1E4A3C', bd: taken ? '#17191C' : '#A9C7BC' };
+    });
+    const capacity = all.length;
+    return {
+      nav, jobs, modes, modeHint, days, steppers, prayer: st.prayer,
+      prJc: st.prayer ? 'flex-end' : 'flex-start', prBg: st.prayer ? '#2F5D50' : '#CFC8BC',
+      flipPrayer: () => this.setState({ prayer: !st.prayer }),
+      perDay: slots.length, dayCount: onDays.length, capacity,
+      fitLabel: capacity >= C.length ? 'السعة كافية' : 'السعة غير كافية', fitC: capacity >= C.length ? '#1E6B4F' : '#9A3A26',
+      firstDay: firstDay ? firstDay.name + ' ' + firstDay.d + ' أكتوبر' : '—',
+      slotRule: 'مقابلة ' + st.dur + ' د + بريك ' + st.brk + ' د',
+      timeline, assignedRows, unassignedRows, nA: assignedRows.length, nU: unassignedRows.length, allDone: unassignedRows.length === 0,
+      auto: () => this.setState({ assigned: st.assigned.concat(unassigned.map((c) => c.id)) }),
+      reset: () => this.setState({ assigned: ['y', 'o', 's', 'm'] })
+    };
+  }
+}
+</script>
+</body>
+</html>

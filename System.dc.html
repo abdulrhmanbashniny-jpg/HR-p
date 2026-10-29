@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>البنية التقنية</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#17191C;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#FFFFFF}
+a{color:#F2C14E}a:hover{color:#F6D27E}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 1000px; box-sizing: border-box; background: #17191C; color: #FFFFFF; padding: 56px 64px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F2C14E">ARCHITECTURE</span>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 38px">البنية التقنية للمنصة</h1>
+</div>
+<span style="font-size: 14px; color: #B9BCC1">الواجهة على GitHub · البيانات والمنطق على Supabase</span>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 60px 1.5fr 60px 1fr; align-items: stretch">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; font-weight: 600; color: #9DA1A7">الواجهات</span>
+<div style="padding: 20px; border-radius: 16px; background: #22252A; border: 1px solid #33363B; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600; font-size: 16px">بوابة المتقدمين</span>
+<span style="font-size: 13px; color: #B9BCC1; line-height: 1.7">الوظائف · التقديم · الاختبار · النتيجة</span>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #22252A; border: 1px solid #33363B; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600; font-size: 16px">لوحة لجنة التوظيف</span>
+<span style="font-size: 13px; color: #B9BCC1; line-height: 1.7">دخول محمي · صلاحيات حسب الدور</span>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #2A2D31; display: flex; flex-direction: column; gap: 6px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F2C14E">GitHub</span>
+<span style="font-size: 13px; color: #CFD2D6; line-height: 1.7">React + Vite · نشر تلقائي عبر GitHub Actions إلى GitHub Pages</span>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: center; color: #5E6166; font-size: 28px">⟷</div>
+
+<div style="padding: 22px; border-radius: 20px; border: 1.5px solid #2F5D50; background: #1B2622; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 700; font-size: 18px">Supabase</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A9D4C2">Postgres · Auth · Storage · Edge</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
+<span style="font-weight: 600; font-size: 14px">الجداول</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #C9DCD5; line-height: 1.9">jobs · job_prompts<br>candidates · applications<br>assessments · answers<br>evaluations · interviews<br>wa_messages · audit_log</span>
+</div>
+<div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
+<span style="font-weight: 600; font-size: 14px">Edge Functions</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #C9DCD5; line-height: 1.9">ai-gateway<br>generate-questions<br>score-assessment<br>analyze-cv<br>create-meeting</span>
+</div>
+<div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
+<span style="font-weight: 600; font-size: 14px">Storage</span>
+<span style="font-size: 12px; color: #C9DCD5; line-height: 1.8">السير الذاتية والأعمال المرفقة بروابط موقّعة مؤقتة</span>
+</div>
+<div style="padding: 14px; border-radius: 12px; background: #22302B; display: flex; flex-direction: column; gap: 6px">
+<span style="font-weight: 600; font-size: 14px">pg_cron + Realtime</span>
+<span style="font-size: 12px; color: #C9DCD5; line-height: 1.8">تنبيه اللجنة عند حلول كل موعد · تحديث اللوحة لحظياً</span>
+</div>
+</div>
+<span style="font-size: 12px; color: #A9D4C2">Row Level Security: المتقدم يرى طلبه فقط · اللجنة حسب الدور (رئيس، عضو، موارد بشرية)</span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: center; color: #5E6166; font-size: 28px">⟷</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 13px; font-weight: 600; color: #9DA1A7">خدمات خارجية</span>
+<div style="padding: 20px; border-radius: 16px; background: #22252A; border: 1px solid #33363B; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600; font-size: 16px">الذكاء الاصطناعي</span>
+<span style="font-size: 13px; color: #B9BCC1; line-height: 1.7">أي مزوّد: OpenAI، Gemini، Claude، DeepSeek، Mistral، OpenRouter أو خادم مخصص · عبر طبقة موحّدة ai-gateway</span>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #22252A; border: 1px solid #33363B; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600; font-size: 16px">واتساب</span>
+<span style="font-size: 13px; color: #B9BCC1; line-height: 1.7">رابط هجين wa.me · يفتح واتساب المُرسِل والرسالة جاهزة من القالب · بدون اشتراك API</span>
+</div>
+<div style="padding: 20px; border-radius: 16px; background: #22252A; border: 1px solid #33363B; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 600; font-size: 16px">القاعة الافتراضية</span>
+<span style="font-size: 13px; color: #B9BCC1; line-height: 1.7">ربط حساب الشركة (Google أو Zoom أو Teams) مرة واحدة · رابط فريد يُنشأ تلقائياً لكل موعد</span>
+</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{flow}}" as="f" hint-placeholder-count="5">
+<div style="padding: 18px; border-radius: 14px; background: #22252A; display: flex; flex-direction: column; gap: 8px">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #F2C14E">{{f.n}}</span>
+<span style="font-size: 13px; line-height: 1.7; color: #E6E4DF">{{f.t}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { flow: [
+      { n: '01', t: 'المتقدم يرسل بياناته وسيرته ← تُحفظ في applications و Storage.' },
+      { n: '02', t: 'generate-questions يبني 10 أسئلة من برومنت الوظيفة.' },
+      { n: '03', t: 'score-assessment يصحّح ويحسب الدرجة ← أقل من 60% اعتذار، وإلا تأهل.' },
+      { n: '04', t: 'ترتيب المواعيد ← create-meeting يولّد رابط القاعة ← زر واتساب يفتح الدعوة جاهزة، وعند الموعد يظهر زر رابط القاعة.' },
+      { n: '05', t: 'تقييمات اللجنة + درجة AI ← ترتيب موزون تلقائي للمرشحين.' }
+    ] };
+  }
+}
+</script>
+</body>
+</html>

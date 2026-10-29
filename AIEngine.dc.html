@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>محرك التحليل بالذكاء الاصطناعي</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F3F1EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 2150px; box-sizing: border-box; background: #F3F1EC; display: flex">
+
+<aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
+<div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+</div>
+<nav style="display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<a href="{{n.href}}" style="height: 44px; padding: 0 12px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; font-size: 14px; font-weight: 500; background: {{n.bg}}; color: {{n.fg}}"><span>{{n.label}}</span><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #F2C14E">{{n.badge}}</span></a>
+</sc-for>
+</nav>
+</aside>
+
+<main style="flex-grow: 1; padding: 28px 36px 40px; display: flex; flex-direction: column; gap: 24px; min-width: 0">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 30px">محرك التحليل بالذكاء الاصطناعي</h1>
+<span style="font-size: 15px; color: #4A4D52">ماذا يحلّل، وكيف، وماذا يسلّم للجنة — لكل متقدم ولكل وظيفة حسب برومنتها</span>
+</div>
+<a href="Settings.dc.html" style="height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid #17191C; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #17191C; text-decoration: none">النموذج: أي مزوّد تختاره من الإعدادات</a>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{pipe}}" as="p" hint-placeholder-count="6">
+<div style="background: {{p.bg}}; color: {{p.fg}}; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; min-height: 150px; box-sizing: border-box">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: {{p.nc}}">{{p.n}}</span>
+<span style="font-weight: 700; font-size: 15px">{{p.t}}</span>
+<span style="font-size: 12px; line-height: 1.7; opacity: 0.85">{{p.d}}</span>
+</div>
+</sc-for>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: #C8553D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700">أ</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 22px">تحليل السيرة الذاتية</span>
+<span style="margin-right: auto; font-size: 13px; color: #5E6166">مثال: محمد القحطاني — فني دهانات أول</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px">
+<div style="grid-column: span 5; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600; color: #4A4D52">1) ما الذي يُستخرج من السيرة</span>
+<sc-for list="{{extract}}" as="e" hint-placeholder-count="7">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 10px; background: #F8F6F2; font-size: 13px">
+<span style="color: #4A4D52; flex-shrink: 0">{{e.k}}</span><span style="font-weight: 600; text-align: left">{{e.v}}</span>
+</div>
+</sc-for>
+</div>
+<div style="grid-column: span 7; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 600; color: #4A4D52">2) مطابقتها مع متطلبات الوظيفة (من البرومنت)</span>
+<div style="border: 1px solid #E3DED5; border-radius: 14px; overflow: hidden">
+<div style="display: grid; grid-template-columns: 2fr 0.8fr 2fr 0.8fr; padding: 10px 14px; background: #F8F6F2; font-size: 12px; font-weight: 600; color: #5E6166"><span>المتطلب</span><span>النوع</span><span>الدليل من السيرة</span><span>النتيجة</span></div>
+<sc-for list="{{match}}" as="m" hint-placeholder-count="6">
+<div style="display: grid; grid-template-columns: 2fr 0.8fr 2fr 0.8fr; padding: 10px 14px; border-top: 1px solid #F0EDE7; font-size: 13px; align-items: center">
+<span style="font-weight: 500">{{m.req}}</span><span style="color: #4A4D52">{{m.type}}</span><span style="color: #3A3D42">{{m.ev}}</span>
+<span style="justify-self: start; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; background: {{m.bg}}; color: {{m.fg}}">{{m.res}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="padding: 14px; border-radius: 12px; background: #FBF3DE; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 700; color: #5A4410">3) علامات تستحق الانتباه</span>
+<span style="font-size: 12px; line-height: 1.8; color: #3A3D42">فجوة 7 أشهر (2022) · مسمى «مشرف» مع خبرة إشرافية غير موضحة · لا يوجد تعارض مع إجابات الاختبار</span>
+</div>
+<div style="padding: 14px; border-radius: 12px; background: #17191C; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 13px; color: #CFD2D6">نسبة مطابقة السيرة</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 30px; color: #F2C14E">82%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: #2F5D50; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700">ب</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 22px">تصحيح الاختبار — كل نوع سؤال بطريقته</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{types}}" as="t" hint-placeholder-count="4">
+<div style="border: 1px solid #E3DED5; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 700; font-size: 16px">{{t.t}}</span>
+<span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: {{t.bg}}; color: {{t.fg}}">{{t.who}}</span>
+<span style="font-size: 13px; line-height: 1.8; color: #3A3D42">{{t.how}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; align-items: start">
+<div style="grid-column: span 7; border: 1px solid #E3DED5; border-radius: 16px; overflow: hidden">
+<div style="padding: 14px 18px; background: #F8F6F2; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; color: #5E6166">مثال على معيار التصحيح (Rubric) — سؤال نصي 4</span>
+<span style="font-weight: 600; font-size: 14px">معالجة تقشّر الدهان في جدار حمام رطب</span>
+</div>
+<sc-for list="{{rubric}}" as="r" hint-placeholder-count="4">
+<div style="padding: 12px 18px; border-top: 1px solid #F0EDE7; display: flex; align-items: center; gap: 14px; font-size: 13px">
+<span style="flex-grow: 1">{{r.p}}</span>
+<span style="font-size: 12px; color: #4A4D52; width: 170px">{{r.note}}</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-weight: 700; width: 44px; text-align: left; color: {{r.c}}">{{r.got}}/{{r.w}}</span>
+</div>
+</sc-for>
+<div style="padding: 12px 18px; border-top: 1px solid #E3DED5; display: flex; justify-content: space-between; font-weight: 700; font-size: 14px"><span>درجة السؤال</span><span style="font-family: 'IBM Plex Mono', monospace">6/10</span></div>
+</div>
+<div style="grid-column: span 5; display: flex; flex-direction: column; gap: 12px">
+<div style="padding: 18px; border-radius: 16px; background: #E9F1EC; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 700; font-size: 14px; color: #1E4A3C">لماذا هذا عادل؟</span>
+<span style="font-size: 13px; line-height: 1.9; color: #1E3A31">كل نقطة لها وزن مكتوب مسبقاً في برومنت الوظيفة، والنموذج مُلزم بذكر الدليل من إجابة المرشح لكل نقطة — فتقدر اللجنة تراجع السبب وتعدّل الدرجة.</span>
+</div>
+<div style="padding: 18px; border-radius: 16px; background: #F8F6F2; display: flex; flex-direction: column; gap: 8px">
+<span style="font-weight: 700; font-size: 14px">درجة الاختبار النهائية</span>
+<span style="font-size: 13px; line-height: 1.9; color: #3A3D42">مجموع درجات الأسئلة العشرة ÷ 100 ← <b>78%</b>. هذه الدرجة وحدها تحدد الاجتياز (60% فأكثر).</span>
+</div>
+</div>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start">
+<div style="background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: #3B5B8C; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 700">ج</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 22px">النزاهة والتحقق</span>
+</div>
+<sc-for list="{{integrity}}" as="g" hint-placeholder-count="6">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #F0EDE7; font-size: 13px">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 600">{{g.k}}</span><span style="font-size: 12px; color: #5E6166">{{g.d}}</span></span>
+<span style="padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; background: {{g.bg}}; color: {{g.fg}}">{{g.v}}</span>
+</div>
+</sc-for>
+<span style="font-size: 12px; color: #4A4D52; line-height: 1.8">هذه تنبيهات تظهر للجنة فقط، ولا يُستبعد أي مرشح آلياً بسببها.</span>
+</div>
+
+<div style="background: #17191C; color: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 36px; height: 36px; border-radius: 10px; background: #E0A21B; color: #17191C; display: flex; align-items: center; justify-content: center; font-weight: 700">د</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 22px">ماذا يستلم فريق التوظيف</span>
+</div>
+<sc-for list="{{outputs}}" as="o" hint-placeholder-count="6">
+<div style="display: flex; gap: 12px; align-items: flex-start; font-size: 13px; line-height: 1.8">
+<span style="flex-shrink: 0; margin-top: 3px; width: 18px; height: 18px; border-radius: 5px; background: #2A2D31; display: flex; align-items: center; justify-content: center">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F2C14E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+<span><b>{{o.k}}:</b> <span style="color: #CFD2D6">{{o.v}}</span></span>
+</div>
+</sc-for>
+<div style="padding: 14px; border-radius: 12px; background: #2A2D31; font-size: 12px; line-height: 1.8; color: #E6E4DF">منطقة المراجعة البشرية: أي درجة بين 55% و65% تُعلَّم «يحتاج مراجعة»، وتقدر اللجنة ترفعها أو تخفضها مع كتابة السبب.</div>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; align-items: start">
+<div style="grid-column: span 7; background: #17191C; border-radius: 22px; overflow: hidden">
+<div style="padding: 14px 20px; border-bottom: 1px solid #2A2D31; font-size: 13px; color: #CFD2D6">المخرج الموحّد (JSON) — نفس الشكل مهما كان مزوّد الذكاء الاصطناعي</div>
+<pre dir="ltr" style="margin: 0; padding: 18px 20px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; line-height: 1.8; color: #E6E4DF; white-space: pre-wrap; text-align: left">{{json}}</pre>
+</div>
+<div style="grid-column: span 5; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-weight: 700; font-size: 17px">الحوكمة والشفافية</span>
+<sc-for list="{{gov}}" as="v" hint-placeholder-count="5">
+<div style="display: flex; gap: 10px; font-size: 13px; line-height: 1.8; color: #3A3D42"><span style="color: #A8412B; font-weight: 700">—</span><span>{{v}}</span></div>
+</sc-for>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2150}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const navItems = [
+      ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
+      ['ترتيب المرشحين', 'Ranking.dc.html', ''], ['ترتيب المواعيد', 'Scheduler.dc.html', '10'], ['رسائل واتساب', 'Interviews.dc.html', '5'],
+      ['محرك التحليل AI', 'AIEngine.dc.html', ''], ['الإعدادات والتكاملات', 'Settings.dc.html', '']
+    ];
+    const active = 'AIEngine.dc.html';
+    const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
+    const pipe = [
+      ['01', 'استلام الطلب', 'البيانات والسيرة والإجابات تُحفظ في Supabase'],
+      ['02', 'قراءة السيرة', 'استخراج النص من PDF و Word، وقراءة الملفات الممسوحة ضوئياً (OCR)'],
+      ['03', 'إخفاء الهوية', 'حذف الاسم والعمر والجنسية والصورة قبل الإرسال للنموذج'],
+      ['04', 'تحليل السيرة', 'استخراج الخبرات والمهارات ومطابقتها مع متطلبات الوظيفة'],
+      ['05', 'تصحيح الاختبار', 'آلي للاختياري والرقمي، والذكاء الاصطناعي للنصي والمرفقات'],
+      ['06', 'التقرير والتوصية', 'درجات، نقاط قوة وضعف، أسئلة مقترحة للمقابلة']
+    ].map(([n, t, d], k) => ({ n, t, d, bg: k === 5 ? '#17191C' : '#FFFFFF', fg: k === 5 ? '#FFFFFF' : '#17191C', nc: k === 5 ? '#F2C14E' : '#A8412B' }));
+    const extract = [
+      ['سنوات الخبرة الفعلية', '6 سنوات (محسوبة من التواريخ)'], ['آخر مسمى وظيفي', 'فني دهانات — مشرف فريق'], ['المهارات والأدوات', 'Airless، إيبوكسي، دهانات ديكورية'],
+      ['الشهادات والدورات', 'السلامة المهنية OSHA 10'], ['التعليم', 'دبلوم فني'], ['اللغات', 'العربية، إنجليزية متوسطة'], ['المدينة والجاهزية', 'الرياض · متاح فوراً']
+    ].map(([k, v]) => ({ k, v }));
+    const R = { ok: ['#E9F1EC', '#1E4A3C', 'مطابق'], part: ['#FBF3DE', '#5A4410', 'جزئي'], no: ['#F8E6E0', '#7E2F1F', 'غير موجود'] };
+    const match = [
+      ['خبرة 3 سنوات على الأقل', 'إلزامي', '6 سنوات في شركتين', 'ok'], ['أجهزة الرش Airless', 'إلزامي', 'مذكورة في مشروعين', 'ok'],
+      ['معرفة بالسلامة المهنية', 'إلزامي', 'شهادة OSHA 10', 'ok'], ['قيادة فريق', 'مفضّل', 'مسمى مشرف بلا تفاصيل', 'part'],
+      ['دهانات ديكورية', 'مفضّل', 'صور وأعمال مذكورة', 'ok'], ['اللغة الإنجليزية', 'مفضّل', 'غير محدد المستوى', 'part']
+    ].map(([req, type, ev, r]) => ({ req, type, ev, bg: R[r][0], fg: R[r][1], res: R[r][2] }));
+    const types = [
+      { t: 'اختيار من متعدد', who: 'تصحيح آلي — بدون AI', bg: '#E8EDF5', fg: '#27406B', how: 'يقارن النظام الاختيار بالإجابة الصحيحة المخزّنة. نتيجة فورية ودقيقة 100% وبدون تكلفة.' },
+      { t: 'إجابة رقمية', who: 'تصحيح آلي + هامش', bg: '#E8EDF5', fg: '#27406B', how: 'مقارنة بالرقم الصحيح مع هامش تسامح تحدده (مثلاً ±2%) ووحدة القياس المطلوبة.' },
+      { t: 'إجابة نصية', who: 'الذكاء الاصطناعي', bg: '#FBF3DE', fg: '#5A4410', how: 'يقارن الإجابة بالإجابة النموذجية ونقاط التصحيح، ويعطي درجة لكل نقطة مع الدليل والسبب.' },
+      { t: 'إرفاق أعمال', who: 'AI يقرأ الصور', bg: '#FBF3DE', fg: '#5A4410', how: 'نموذج يدعم الصور يقيّم صلة العمل بالوظيفة وجودة التشطيب، وينبّه لو تكررت الصورة عند مرشح آخر.' }
+    ];
+    const rubric = [
+      ['فحص مصدر الرطوبة أو التسرّب أولاً', 3, 0, 'لم يُذكر'], ['إزالة الطبقة المتقشرة وتنظيف السطح', 2, 2, 'مذكور بوضوح'],
+      ['مانع رطوبة وطبقة أساس مقاومة', 3, 3, 'مذكور بالتسلسل الصحيح'], ['ترتيب منطقي ومصطلحات صحيحة', 2, 1, 'ترتيب جيد، مصطلح ناقص']
+    ].map(([p, w, got, note]) => ({ p, w, got, note, c: got === w ? '#1E6B4F' : (got === 0 ? '#9A3A26' : '#6B4E0A') }));
+    const I = { g: ['#E9F1EC', '#1E4A3C'], w: ['#FBF3DE', '#5A4410'] };
+    const integrity = [
+      ['زمن الإجابة', 'إجابة سريعة جداً على سؤال نصي طويل تُعلَّم', 'طبيعي · 2:08 د للسؤال', 'g'],
+      ['النسخ واللصق', 'رصد لصق نص داخل الإجابات', 'لا يوجد', 'g'],
+      ['مغادرة صفحة الاختبار', 'عدد مرات التبديل لتبويب آخر', 'مرة واحدة', 'w'],
+      ['تشابه مع مرشحين آخرين', 'مقارنة الإجابات النصية بين المتقدمين', '4% · طبيعي', 'g'],
+      ['احتمال نص مولّد آلياً', 'مؤشر تقديري وليس حكماً', 'منخفض', 'g'],
+      ['تطابق السيرة مع الإجابات', 'هل الخبرة المذكورة تنعكس في الإجابات؟', 'متّسق', 'g']
+    ].map(([k, d, v, s]) => ({ k, d, v, bg: I[s][0], fg: I[s][1] }));
+    const outputs = [
+      { k: 'درجة الاختبار', v: '78% — تحدد الاجتياز (60% فأكثر)' },
+      { k: 'مطابقة السيرة الذاتية', v: '82% مع تفصيل كل متطلب' },
+      { k: 'نقاط القوة والضعف', v: 'مختصرة ومربوطة بدليل من الإجابات والسيرة' },
+      { k: 'أسئلة مقترحة للمقابلة', v: 'تُبنى من نقاط الضعف: «كيف تتأكد من مصدر الرطوبة قبل المعالجة؟»' },
+      { k: 'التوصية ومستوى الثقة', v: 'مرشح قوي · ثقة عالية' },
+      { k: 'ملخص من سطرين', v: 'يظهر في قائمة المرشحين وترتيبهم' }
+    ];
+    const json = '{\n  "test_score": 78,\n  "passed": true,\n  "cv_match": 82,\n  "per_question": [\n    { "q": 4, "score": 6, "max": 10,\n      "points": [{ "id": "leak_check", "got": 0, "evidence": null }],\n      "reason": "لم يذكر فحص مصدر التسرب" }\n  ],\n  "requirements": [{ "id": "airless", "status": "met" }],\n  "strengths": ["تجهيز الأسطح", "حساب الكميات"],\n  "gaps": ["تشخيص الرطوبة", "إدارة الفريق"],\n  "interview_questions": ["..."],\n  "integrity_flags": ["tab_switch:1"],\n  "recommendation": "strong", "confidence": "high"\n}';
+    const gov = [
+      'كل تحليل يُحفظ مع رقم إصدار البرومنت واسم النموذج المستخدم وتاريخه.',
+      'تقدر تغيّر المزوّد أو النموذج في أي وقت، وتعيد تحليل المرشحين السابقين بضغطة.',
+      'اللجنة تقدر تعدّل أي درجة مع كتابة السبب، والتعديل يظهر في سجل التدقيق.',
+      'البيانات الشخصية لا تُرسل للنموذج — فقط المحتوى المهني بعد إخفاء الهوية.',
+      'مفاتيح API محفوظة في خوادم Supabase ولا تظهر في المتصفح أبداً.'
+    ];
+    return { nav, pipe, extract, match, types, rubric, integrity, outputs, json, gov };
+  }
+}
+</script>
+</body>
+</html>

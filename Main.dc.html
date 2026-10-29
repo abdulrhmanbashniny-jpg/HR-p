@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>الوظائف المتاحة</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F2EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; height: 1700px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column; overflow: hidden">
+
+<header style="height: 84px; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #E3DED5">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="display: flex; gap: 3px; align-items: flex-end">
+<div style="width: 10px; height: 30px; background: #C8553D; border-radius: 3px"></div>
+<div style="width: 10px; height: 38px; background: #E0A21B; border-radius: 3px"></div>
+<div style="width: 10px; height: 24px; background: #2F5D50; border-radius: 3px"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 19px">[اسم الشركة]</span>
+<span style="font-size: 12px; color: #5E6166">بوابة التوظيف</span>
+</div>
+</div>
+<nav style="display: flex; gap: 36px; font-size: 15px; font-weight: 500">
+<a href="#jobs" style="color: #17191C; text-decoration: none">الوظائف</a>
+<a href="#" style="color: #4A4D52; text-decoration: none">عن الشركة</a>
+<a href="#" style="color: #4A4D52; text-decoration: none">بيئة العمل</a>
+<a href="#" style="color: #4A4D52; text-decoration: none">تتبّع طلبي</a>
+</nav>
+<a href="Dashboard.dc.html" style="height: 44px; padding: 0 20px; display: flex; align-items: center; gap: 8px; border: 1.5px solid #17191C; border-radius: 10px; color: #17191C; text-decoration: none; font-weight: 600; font-size: 14px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+دخول لجنة التوظيف
+</a>
+</header>
+
+<section style="padding: 72px 80px 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 8px 14px; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 999px; font-size: 13px; font-weight: 500">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #2F7A5F"></span>
+6 وظائف شاغرة · التقديم مفتوح الآن
+</div>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 68px; line-height: 1.15; letter-spacing: -0.5px">لوّن مسيرتك المهنية<br>مع فريق يصنع الألوان</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.8; color: #4A4D52; max-width: 560px">اختر الوظيفة المناسبة، قدّم بياناتك وسيرتك الذاتية، ثم أجرِ اختبار جدارة قصيراً يقيّمه الذكاء الاصطناعي فوراً وبعدالة.</p>
+<div style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 16px; padding: 8px; box-shadow: 0 12px 32px rgba(23,25,28,0.06)">
+<label style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 0 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E6166" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<input placeholder="المسمى الوظيفي أو الكلمة المفتاحية" style="border: 0; outline: 0; font: inherit; font-size: 15px; width: 100%; background: transparent">
+</label>
+<div style="width: 1px; height: 32px; background: #E3DED5"></div>
+<label style="display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 15px; color: #4A4D52">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+<select style="border: 0; font: inherit; background: transparent; color: #17191C"><option>كل المدن</option></select>
+</label>
+<button style="height: 52px; padding: 0 28px; border: 0; border-radius: 11px; background: #17191C; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 15px">ابحث</button>
+</div>
+</div>
+
+<div style="position: relative; height: 470px">
+<div style="position: absolute; left: 40px; top: 30px; width: 150px; height: 400px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.12); transform: rotate(-9deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #3B5B8C"></div><div style="height: 70px; background: #6F8BB8"></div><div style="height: 50px; background: #B3C3DD"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">الجودة والمختبر</div>
+</div>
+<div style="position: absolute; left: 175px; top: 10px; width: 150px; height: 420px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.12); transform: rotate(-3deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #2F5D50"></div><div style="height: 70px; background: #5E8E7F"></div><div style="height: 50px; background: #A9C7BC"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">المشاريع والمواقع</div>
+</div>
+<div style="position: absolute; left: 310px; top: 0; width: 150px; height: 440px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.14); transform: rotate(4deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #E0A21B"></div><div style="height: 70px; background: #EDC266"></div><div style="height: 50px; background: #F6E0AE"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">المبيعات والعملاء</div>
+</div>
+<div style="position: absolute; left: 445px; top: 26px; width: 150px; height: 420px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.16); transform: rotate(10deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #C8553D; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #FFFFFF">PT-101</span></div><div style="height: 70px; background: #DD8A76"></div><div style="height: 50px; background: #F0C4B8"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">الإنتاج والتنفيذ</div>
+</div>
+</div>
+</section>
+
+<section style="margin: 0 80px; padding: 28px 32px; background: #17191C; border-radius: 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; color: #FFFFFF">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<span style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; background: #2A2D31; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #F2C14E">{{s.n}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-weight: 600; font-size: 16px">{{s.t}}</span>
+<span style="font-size: 13px; line-height: 1.6; color: #B9BCC1">{{s.d}}</span>
+</div>
+</div>
+</sc-for>
+</section>
+
+<section id="jobs" style="padding: 64px 80px 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 36px">الوظائف المتاحة</h2>
+<span style="font-size: 15px; color: #5E6166">كل وظيفة لها اختبار جدارة مصمّم خصيصاً لمهامها</span>
+</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+<button onClick="{{f.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; background: {{f.bg}}; color: {{f.fg}}; border: 1px solid {{f.bd}}">{{f.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{jobs}}" as="j" hint-placeholder-count="6">
+<a href="Job.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; overflow: hidden; text-decoration: none; color: #17191C">
+<div style="height: 112px; background: {{j.swatch}}; padding: 18px 22px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; color: {{j.ink}}">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600">{{j.code}}</span>
+<span style="font-size: 12px; font-weight: 500">{{j.colorName}}</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #5E6166">{{j.dept}}</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 600; font-size: 21px">{{j.title}}</span>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px">
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.city}}</span>
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.type}}</span>
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.exp}}</span>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid #EFEBE4">
+<span style="font-size: 13px; color: #5E6166">آخر موعد: {{j.deadline}}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: #0F5B4B"><span>التفاصيل والتقديم</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></span>
+</div>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
+
+<footer style="margin-top: auto; padding: 28px 80px; border-top: 1px solid #E3DED5; display: flex; justify-content: space-between; font-size: 13px; color: #5E6166">
+<span>© 2026 [اسم الشركة] — جميع الحقوق محفوظة</span>
+<span>سياسة الخصوصية · شروط الاستخدام · تواصل معنا</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { f: 'الكل' }; }
+  renderVals() {
+    const cur = this.state.f;
+    const filters = ['الكل', 'الإنتاج', 'المشاريع', 'المبيعات', 'الجودة', 'المستودعات'].map((label) => {
+      const on = label === cur;
+      return { label, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ f: label }) };
+    });
+    const all = [
+      { code: 'PT-101', colorName: 'تيراكوتا', swatch: '#C8553D', ink: '#FFFFFF', dept: 'الإنتاج', title: 'فني دهانات أول', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة 3+ سنوات', deadline: '15 أكتوبر' },
+      { code: 'PM-204', colorName: 'أخضر زيتي', swatch: '#2F5D50', ink: '#FFFFFF', dept: 'المشاريع', title: 'مشرف مواقع ومشاريع', city: 'جدة', type: 'دوام كامل', exp: 'خبرة 5+ سنوات', deadline: '20 أكتوبر' },
+      { code: 'SL-310', colorName: 'زعفراني', swatch: '#E0A21B', ink: '#17191C', dept: 'المبيعات', title: 'مندوب مبيعات ميداني', city: 'الدمام', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '18 أكتوبر' },
+      { code: 'QC-412', colorName: 'أزرق رمادي', swatch: '#3B5B8C', ink: '#FFFFFF', dept: 'الجودة', title: 'فني مختبر مطابقة ألوان', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '25 أكتوبر' },
+      { code: 'WH-518', colorName: 'بني ترابي', swatch: '#8A6E4B', ink: '#FFFFFF', dept: 'المستودعات', title: 'أمين مستودع', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنة+', deadline: '12 أكتوبر' },
+      { code: 'DS-605', colorName: 'وردي رملي', swatch: '#D9B3C2', ink: '#17191C', dept: 'المبيعات', title: 'مستشار ديكور وألوان', city: 'جدة', type: 'دوام جزئي', exp: 'خبرة 3+ سنوات', deadline: '30 أكتوبر' }
+    ];
+    const jobs = cur === 'الكل' ? all : all.filter((j) => j.dept === cur);
+    const steps = [
+      { n: '01', t: 'اختر الوظيفة', d: 'اطّلع على الوصف والمهام والشروط' },
+      { n: '02', t: 'قدّم بياناتك', d: 'الاسم والجوال والبريد والسيرة الذاتية' },
+      { n: '03', t: 'اختبار الجدارة', d: '10 أسئلة يقيّمها الذكاء الاصطناعي' },
+      { n: '04', t: 'مقابلة افتراضية', d: 'نرسل لك الموعد والرابط عبر واتساب' }
+    ];
+    return { filters, jobs, steps };
+  }
+}
+</script>
+</body>
+</html>
