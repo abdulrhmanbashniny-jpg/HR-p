@@ -19,7 +19,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
 <div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
 <div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
-<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">منصة التوظيف الذكية</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
 </div>
 <nav style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{nav}}" as="n" hint-placeholder-count="6">
@@ -88,7 +88,31 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
 class Component extends DCLogic {
-  constructor(p) { super(p); this.state = { sort: 'final', job: 'PT-101' }; }
+  constructor(p) {
+    super(p);
+    this.state = { sort: 'final', job: 'PT-101', serverData: null };
+  }
+
+  async mounted() {
+    try {
+      const res = await fetch('/api/applications');
+      if (res.ok) {
+        const apps = await res.json();
+        if (Array.isArray(apps) && apps.length > 0) {
+          const mapped = apps.map(a => [
+            (a.full_name || 'م')[0],
+            a.full_name || 'مرشح',
+            a.assessment_score || 80,
+            a.cv_match_score || 85,
+            a.ai_overall_score || 82,
+            a.status === 'accepted' ? 'off' : (a.status === 'interview_scheduled' ? 'int' : 'sch')
+          ]);
+          this.setState({ serverData: mapped });
+        }
+      }
+    } catch(e){}
+  }
+
   renderVals() {
     const navItems = [
       ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
@@ -100,11 +124,16 @@ class Component extends DCLogic {
     const J = [['PT-101', 'فني دهانات أول', '#C8553D'], ['PM-204', 'مشرف مواقع', '#2F5D50'], ['SL-310', 'مندوب مبيعات', '#E0A21B'], ['QC-412', 'مختبر ألوان', '#3B5B8C'], ['WH-518', 'أمين مستودع', '#8A6E4B'], ['DS-605', 'مستشار ديكور', '#D9B3C2']];
     const jobs = J.map(([id, label, sw]) => { const on = id === this.state.job; return { label, sw, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ job: id }) }; });
     const P = { off: ['#E9F1EC', '#1E4A3C', 'مرشّح للعرض'], int: ['#FBF3DE', '#5A4410', 'تمت المقابلة'], sch: ['#E8EDF5', '#27406B', 'مقابلة مجدولة'], wait: ['#F3F1EC', '#4A4D52', 'بانتظار الجدولة'] };
-    const data = [
+    
+    const defaultData = [
       ['ي', 'يوسف المالكي', 88, 85, 84, 'off'], ['م', 'محمد القحطاني', 78, 82, 84, 'off'], ['س', 'سلطان الشمري', 81, 74, 79, 'int'],
       ['ع', 'عمر باوزير', 92, 70, 72, 'int'], ['ح', 'حسن اليامي', 74, 80, 76, 'sch'], ['ب', 'بندر العنزي', 69, 77, 74, 'sch'],
       ['ت', 'تركي الحارثي', 71, 66, 0, 'wait'], ['ز', 'زياد الرشيدي', 64, 72, 0, 'wait']
-    ].map(([i, name, ai, cv, com, st]) => ({ i, name, ai, cv, com: com ? com + '%' : '—', final: com ? +(ai * 0.4 + com * 0.6).toFixed(1) : +(ai * 0.4).toFixed(1), st: P[st][2], pbg: P[st][0], pfg: P[st][1] }));
+    ];
+
+    const source = (this.state.serverData && this.state.serverData.length > 0) ? this.state.serverData : defaultData;
+
+    const data = source.map(([i, name, ai, cv, com, st]) => ({ i, name, ai, cv, com: com ? com + '%' : '—', final: com ? +(ai * 0.4 + com * 0.6).toFixed(1) : +(ai * 0.4).toFixed(1), st: P[st] ? P[st][2] : 'مكتمل', pbg: P[st] ? P[st][0] : '#E9F1EC', pfg: P[st] ? P[st][1] : '#1E4A3C' }));
     const byAi = this.state.sort === 'ai';
     data.sort((a, b) => byAi ? b.ai - a.ai : b.final - a.final);
     const rows = data.map((r, k) => Object.assign({}, r, { rank: k + 1 }));

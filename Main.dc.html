@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>الوظائف المتاحة</title>
+<title>بوابة التوظيف — الوظائف المتاحة</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@ body{margin:0;background:#F5F2EC;font-family:'IBM Plex Sans Arabic',system-ui,sa
 a{color:#0F5B4B}a:hover{color:#0A4034}
 </style>
 </helmet>
-<div dir="rtl" style="width: 1440px; height: 1700px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column; overflow: hidden">
+<div dir="rtl" style="width: 1440px; min-height: 1700px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column; overflow: hidden">
 
 <header style="height: 84px; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #E3DED5">
 <div style="display: flex; align-items: center; gap: 14px">
@@ -24,15 +24,14 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <div style="width: 10px; height: 24px; background: #2F5D50; border-radius: 3px"></div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 19px">[اسم الشركة]</span>
-<span style="font-size: 12px; color: #5E6166">بوابة التوظيف</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 19px">منصة التوظيف الذكية</span>
+<span style="font-size: 12px; color: #5E6166">بوابة الكفاءات والدهانات</span>
 </div>
 </div>
 <nav style="display: flex; gap: 36px; font-size: 15px; font-weight: 500">
 <a href="#jobs" style="color: #17191C; text-decoration: none">الوظائف</a>
-<a href="#" style="color: #4A4D52; text-decoration: none">عن الشركة</a>
-<a href="#" style="color: #4A4D52; text-decoration: none">بيئة العمل</a>
-<a href="#" style="color: #4A4D52; text-decoration: none">تتبّع طلبي</a>
+<a href="System.dc.html" style="color: #4A4D52; text-decoration: none">معمارية النظام</a>
+<a href="Dashboard.dc.html" style="color: #4A4D52; text-decoration: none">لوحة التحكم</a>
 </nav>
 <a href="Dashboard.dc.html" style="height: 44px; padding: 0 20px; display: flex; align-items: center; gap: 8px; border: 1.5px solid #17191C; border-radius: 10px; color: #17191C; text-decoration: none; font-weight: 600; font-size: 14px">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
@@ -44,7 +43,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <div style="display: flex; flex-direction: column; gap: 28px">
 <div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 8px 14px; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 999px; font-size: 13px; font-weight: 500">
 <span style="width: 8px; height: 8px; border-radius: 50%; background: #2F7A5F"></span>
-6 وظائف شاغرة · التقديم مفتوح الآن
+وظائف شاغرة معتمدة · التقديم مفتوح الآن
 </div>
 <h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 68px; line-height: 1.15; letter-spacing: -0.5px">لوّن مسيرتك المهنية<br>مع فريق يصنع الألوان</h1>
 <p style="margin: 0; font-size: 19px; line-height: 1.8; color: #4A4D52; max-width: 560px">اختر الوظيفة المناسبة، قدّم بياناتك وسيرتك الذاتية، ثم أجرِ اختبار جدارة قصيراً يقيّمه الذكاء الاصطناعي فوراً وبعدالة.</p>
@@ -109,7 +108,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
 <sc-for list="{{jobs}}" as="j" hint-placeholder-count="6">
-<a href="Job.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; overflow: hidden; text-decoration: none; color: #17191C">
+<a href="{{j.href}}" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; overflow: hidden; text-decoration: none; color: #17191C">
 <div style="height: 112px; background: {{j.swatch}}; padding: 18px 22px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; color: {{j.ink}}">
 <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600">{{j.code}}</span>
 <span style="font-size: 12px; font-weight: 500">{{j.colorName}}</span>
@@ -135,29 +134,61 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 </div>
 </section>
 
-<footer style="margin-top: auto; padding: 28px 80px; border-top: 1px solid #E3DED5; display: flex; justify-content: space-between; font-size: 13px; color: #5E6166">
-<span>© 2026 [اسم الشركة] — جميع الحقوق محفوظة</span>
+<footer style="margin-top: 60px; padding: 28px 80px; border-top: 1px solid #E3DED5; display: flex; justify-content: space-between; font-size: 13px; color: #5E6166">
+<span>© 2026 منصة التوظيف الذكية — جميع الحقوق محفوظة</span>
 <span>سياسة الخصوصية · شروط الاستخدام · تواصل معنا</span>
 </footer>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
 class Component extends DCLogic {
-  constructor(p) { super(p); this.state = { f: 'الكل' }; }
+  constructor(p) {
+    super(p);
+    this.state = { f: 'الكل', serverJobs: null };
+  }
+
+  async mounted() {
+    try {
+      const res = await fetch('/api/jobs');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          this.setState({ serverJobs: data });
+        }
+      }
+    } catch(err) {
+      console.log('[Main] Loaded with offline fallback data');
+    }
+  }
+
   renderVals() {
     const cur = this.state.f;
     const filters = ['الكل', 'الإنتاج', 'المشاريع', 'المبيعات', 'الجودة', 'المستودعات'].map((label) => {
       const on = label === cur;
-      return { label, bg: on ? '#17191C' : '#FFFFFF', fg: on ? '#FFFFFF' : '#17191C', bd: on ? '#17191C' : '#E3DED5', pick: () => this.setState({ f: label }) };
+      return {
+        label,
+        bg: on ? '#17191C' : '#FFFFFF',
+        fg: on ? '#FFFFFF' : '#17191C',
+        bd: on ? '#17191C' : '#E3DED5',
+        pick: () => this.setState({ f: label })
+      };
     });
-    const all = [
-      { code: 'PT-101', colorName: 'تيراكوتا', swatch: '#C8553D', ink: '#FFFFFF', dept: 'الإنتاج', title: 'فني دهانات أول', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة 3+ سنوات', deadline: '15 أكتوبر' },
-      { code: 'PM-204', colorName: 'أخضر زيتي', swatch: '#2F5D50', ink: '#FFFFFF', dept: 'المشاريع', title: 'مشرف مواقع ومشاريع', city: 'جدة', type: 'دوام كامل', exp: 'خبرة 5+ سنوات', deadline: '20 أكتوبر' },
-      { code: 'SL-310', colorName: 'زعفراني', swatch: '#E0A21B', ink: '#17191C', dept: 'المبيعات', title: 'مندوب مبيعات ميداني', city: 'الدمام', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '18 أكتوبر' },
-      { code: 'QC-412', colorName: 'أزرق رمادي', swatch: '#3B5B8C', ink: '#FFFFFF', dept: 'الجودة', title: 'فني مختبر مطابقة ألوان', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '25 أكتوبر' },
-      { code: 'WH-518', colorName: 'بني ترابي', swatch: '#8A6E4B', ink: '#FFFFFF', dept: 'المستودعات', title: 'أمين مستودع', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنة+', deadline: '12 أكتوبر' },
-      { code: 'DS-605', colorName: 'وردي رملي', swatch: '#D9B3C2', ink: '#17191C', dept: 'المبيعات', title: 'مستشار ديكور وألوان', city: 'جدة', type: 'دوام جزئي', exp: 'خبرة 3+ سنوات', deadline: '30 أكتوبر' }
+
+    const defaultJobs = [
+      { id: '22222222-2222-2222-2222-222222222222', code: 'PT-101', colorName: 'تيراكوتا', swatch: '#C8553D', ink: '#FFFFFF', dept: 'الإنتاج', title: 'فني دهانات أول', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة 3+ سنوات', deadline: '15 نوفمبر' },
+      { id: '33333333-3333-3333-3333-333333333333', code: 'PM-204', colorName: 'أخضر زيتي', swatch: '#2F5D50', ink: '#FFFFFF', dept: 'المشاريع', title: 'مشرف مواقع ومشاريع', city: 'جدة', type: 'دوام كامل', exp: 'خبرة 5+ سنوات', deadline: '20 نوفمبر' },
+      { id: '44444444-4444-4444-4444-444444444444', code: 'SL-310', colorName: 'زعفراني', swatch: '#E0A21B', ink: '#17191C', dept: 'المبيعات', title: 'مندوب مبيعات ميداني', city: 'الدمام', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '18 نوفمبر' },
+      { id: '55555555-5555-5555-5555-555555555555', code: 'QC-412', colorName: 'أزرق رمادي', swatch: '#3B5B8C', ink: '#FFFFFF', dept: 'الجودة', title: 'فني مختبر مطابقة ألوان', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '25 نوفمبر' },
+      { id: '66666666-6666-6666-6666-666666666666', code: 'WH-518', colorName: 'بني ترابي', swatch: '#8A6E4B', ink: '#FFFFFF', dept: 'المستودعات', title: 'أمين مستودع', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنة+', deadline: '12 نوفمبر' },
+      { id: '77777777-7777-7777-7777-777777777777', code: 'DS-605', colorName: 'وردي رملي', swatch: '#D9B3C2', ink: '#17191C', dept: 'المبيعات', title: 'مستشار ديكور وألوان', city: 'جدة', type: 'دوام جزئي', exp: 'خبرة 3+ سنوات', deadline: '30 نوفمبر' }
     ];
+
+    const source = (this.state.serverJobs && this.state.serverJobs.length > 0) ? this.state.serverJobs : defaultJobs;
+    const all = source.map(j => ({
+      ...j,
+      href: 'Job.dc.html?id=' + (j.id || j.code)
+    }));
+
     const jobs = cur === 'الكل' ? all : all.filter((j) => j.dept === cur);
     const steps = [
       { n: '01', t: 'اختر الوظيفة', d: 'اطّلع على الوصف والمهام والشروط' },

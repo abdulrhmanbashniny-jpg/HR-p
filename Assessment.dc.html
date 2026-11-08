@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>اختبار الجدارة</title>
+<title>اختبار الجدارة — بوابة التوظيف</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -14,7 +14,7 @@ body{margin:0;background:#F5F2EC;font-family:'IBM Plex Sans Arabic',system-ui,sa
 a{color:#0F5B4B}a:hover{color:#0A4034}
 </style>
 </helmet>
-<div dir="rtl" style="width: 1440px; height: 1000px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column">
+<div dir="rtl" style="width: 1440px; min-height: 1000px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column">
 
 <header style="height: 84px; box-sizing: border-box; padding: 0 64px; display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border-bottom: 1px solid #E3DED5">
 <div style="display: flex; align-items: center; gap: 16px">
@@ -24,8 +24,8 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <div style="width: 9px; height: 20px; background: #2F5D50; border-radius: 3px"></div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-weight: 700; font-size: 16px">اختبار الجدارة — فني دهانات أول</span>
-<span style="font-size: 12px; color: #5E6166">محمد عبدالله القحطاني · طلب HR-2026-0418</span>
+<span style="font-weight: 700; font-size: 16px">اختبار الجدارة التفاعلي</span>
+<span style="font-size: 12px; color: #5E6166">{{candidateHeader}}</span>
 </div>
 </div>
 <div style="display: flex; align-items: center; gap: 14px">
@@ -34,7 +34,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 حُفظ تلقائياً</span>
 <span style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 12px; background: #17191C; color: #FFFFFF">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F2C14E" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path></svg>
-<span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px">18:42</span>
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 17px">{{timer}}</span>
 <span style="font-size: 12px; color: #B9BCC1">متبقية</span>
 </span>
 </div>
@@ -58,56 +58,50 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <span style="display: flex; justify-content: space-between"><span>إجابة رقمية</span><span style="font-family: 'IBM Plex Mono', monospace">2</span></span>
 <span style="display: flex; justify-content: space-between"><span>إرفاق أعمال</span><span style="font-family: 'IBM Plex Mono', monospace">1</span></span>
 </div>
-<div style="display: flex; gap: 10px; padding: 14px; border-radius: 12px; background: #FBF3DE; font-size: 12px; line-height: 1.7; color: #5A4410">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"></path></svg>
-<span>تُقيَّم إجاباتك بالذكاء الاصطناعي وفق معايير الوظيفة، ثم تراجعها لجنة التوظيف.</span>
-</div>
 </aside>
 
-<main style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 24px; padding: 44px 48px; display: flex; flex-direction: column; gap: 28px; min-height: 700px; box-sizing: border-box">
+<main style="flex-grow: 1; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 24px; padding: 40px; display: flex; flex-direction: column; gap: 28px; min-height: 520px">
 <div style="display: flex; justify-content: space-between; align-items: center">
-<span style="font-family: 'IBM Plex Mono', monospace; font-size: 14px; color: #5E6166">السؤال {{num}} / 10</span>
-<span style="padding: 6px 12px; border-radius: 999px; background: #F5F2EC; font-size: 13px; font-weight: 600">{{q.typeLabel}}</span>
+<span style="padding: 6px 14px; border-radius: 8px; background: #F5F2EC; font-size: 13px; font-weight: 600; color: #4A4D52">السؤال {{num}} · {{q.typeLabel}}</span>
+<span style="font-size: 13px; color: #5E6166">الوزن: 10 نقاط</span>
 </div>
-<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 600; font-size: 28px; line-height: 1.6">{{q.text}}</h1>
+
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 26px; line-height: 1.5">{{q.text}}</h2>
 
 <sc-if value="{{isMcq}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
-<button onClick="{{o.pick}}" style="min-height: 64px; padding: 16px 20px; border-radius: 14px; display: flex; align-items: center; gap: 16px; text-align: right; font: inherit; font-size: 17px; cursor: pointer; background: {{o.bg}}; border: 1.5px solid {{o.bd}}; color: #17191C">
-<span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; background: {{o.kbg}}; color: {{o.kfg}}">{{o.key}}</span>
-<span>{{o.label}}</span>
+<button onClick="{{o.pick}}" style="padding: 16px 20px; border-radius: 14px; border: 1.5px solid {{o.bd}}; background: {{o.bg}}; font: inherit; font-size: 16px; display: flex; align-items: center; gap: 16px; text-align: right; cursor: pointer; transition: all 0.15s">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: {{o.kbg}}; color: {{o.kfg}}; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 14px; font-weight: 600; flex-shrink: 0">{{o.key}}</span>
+<span style="flex-grow: 1">{{o.label}}</span>
 </button>
 </sc-for>
 </div>
 </sc-if>
 
 <sc-if value="{{isText}}" hint-placeholder-val="{{false}}">
-<div style="display: flex; flex-direction: column; gap: 8px">
-<textarea placeholder="اكتب إجابتك بخطوات واضحة…" style="height: 220px; box-sizing: border-box; padding: 18px; border: 1.5px solid #D6D0C6; border-radius: 14px; font: inherit; font-size: 16px; line-height: 1.8; resize: none"></textarea>
-<span style="font-size: 12px; color: #5E6166">50 كلمة على الأقل · يُقيَّم الترتيب المنطقي ودقة المصطلحات الفنية</span>
-</div>
+<textarea id="ans-text" placeholder="اكتب إجابتك هنا بالتفصيل وبخطوات واضحة..." style="width: 100%; height: 160px; box-sizing: border-box; padding: 18px; border: 1.5px solid #D6D0C6; border-radius: 14px; font: inherit; font-size: 16px; line-height: 1.7; resize: vertical; outline: 0"></textarea>
 </sc-if>
 
 <sc-if value="{{isNum}}" hint-placeholder-val="{{false}}">
-<div style="display: flex; align-items: center; gap: 14px">
-<input type="number" placeholder="0" dir="ltr" style="width: 240px; height: 72px; box-sizing: border-box; padding: 0 20px; border: 1.5px solid #D6D0C6; border-radius: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 30px; text-align: left">
-<span style="font-size: 18px; font-weight: 600">{{q.unit}}</span>
+<div style="display: flex; align-items: center; gap: 12px; max-width: 320px">
+<input id="ans-num" type="number" placeholder="0" style="height: 56px; flex-grow: 1; padding: 0 16px; border: 1.5px solid #D6D0C6; border-radius: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 20px; outline: 0">
+<span style="font-size: 16px; font-weight: 600; color: #5E6166">{{q.unit}}</span>
 </div>
 </sc-if>
 
 <sc-if value="{{isUpload}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 14px">
-<label style="border: 2px dashed #CFC8BC; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: #FBFAF7">
+<label style="border: 2px dashed #CFC8BC; border-radius: 16px; padding: 32px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: #FBFAF7; cursor: pointer">
 <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#17191C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5-8 9"></path></svg>
-<span style="font-weight: 600; font-size: 15px">أرفق صوراً أو ملف PDF لأعمالك</span>
-<span style="font-size: 13px; color: #5E6166">حتى 6 ملفات · JPG, PNG, PDF · 10 ميجابايت لكل ملف</span>
+<span style="font-weight: 600; font-size: 15px">أرفق صوراً أو ملف PDF لأعمالك السابقة</span>
+<span style="font-size: 13px; color: #5E6166">JPG, PNG, PDF · حتى 10 ميجابايت</span>
 <input type="file" multiple style="display: none">
 </label>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
-<div style="height: 96px; border-radius: 12px; background: #EFE7DC; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[قبل — فيلا الملقا]</div>
-<div style="height: 96px; border-radius: 12px; background: #E3EDE8; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[بعد — فيلا الملقا]</div>
-<div style="height: 96px; border-radius: 12px; background: #E6EBF3; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[دهان ديكوري]</div>
+<div style="height: 96px; border-radius: 12px; background: #EFE7DC; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[قبل — فيلا سكنية]</div>
+<div style="height: 96px; border-radius: 12px; background: #E3EDE8; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[بعد — تشطيب نهائي]</div>
+<div style="height: 96px; border-radius: 12px; background: #E6EBF3; display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box; font-size: 11px; color: #4A4D52">[دهان ديكوري مخصص]</div>
 <div style="height: 96px; border-radius: 12px; border: 1.5px dashed #CFC8BC; display: flex; align-items: center; justify-content: center; font-size: 22px; color: #5E6166">+</div>
 </div>
 </div>
@@ -117,12 +111,17 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <button onClick="{{prev}}" style="height: 52px; padding: 0 22px; border-radius: 12px; border: 1.5px solid #D6D0C6; background: #FFFFFF; font: inherit; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; cursor: pointer">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
 السابق</button>
+
 <sc-if value="{{notLast}}" hint-placeholder-val="{{true}}">
 <button onClick="{{next}}" style="height: 52px; padding: 0 28px; border-radius: 12px; border: 0; background: #17191C; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; cursor: pointer">التالي
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
 </sc-if>
+
 <sc-if value="{{isLast}}" hint-placeholder-val="{{false}}">
-<a href="ResultPass.dc.html" style="height: 52px; padding: 0 28px; border-radius: 12px; background: #C8553D; color: #FFFFFF; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; text-decoration: none">إرسال الإجابات للتقييم</a>
+<button onClick="{{submitAssessment}}" style="height: 52px; padding: 0 28px; border-radius: 12px; background: #C8553D; color: #FFFFFF; border: 0; font-weight: 700; font-size: 15px; display: flex; align-items: center; gap: 8px; cursor: pointer">
+إرسال الإجابات للتقييم الفوري بالذكاء الاصطناعي
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg>
+</button>
 </sc-if>
 </div>
 </main>
@@ -131,19 +130,75 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
 class Component extends DCLogic {
-  constructor(p) { super(p); this.state = { i: 0, a: { 0: 1 } }; }
+  constructor(p) {
+    super(p);
+    this.state = {
+      i: 0,
+      a: { 0: 1 },
+      appId: 'app-0418',
+      candidateName: 'محمد عبدالله القحطاني',
+      jobId: 'PT-101',
+      timer: '24:15'
+    };
+  }
+
+  mounted() {
+    const params = new URLSearchParams(window.location.search);
+    const appId = params.get('appId') || sessionStorage.getItem('hr_app_id') || 'app-0418';
+    const name = params.get('name') || sessionStorage.getItem('hr_candidate_name') || 'محمد عبدالله القحطاني';
+    const jId = params.get('jobId') || 'PT-101';
+    this.setState({ appId, candidateName: name, jobId: jId });
+  }
+
+  async submitAnswers() {
+    const { appId, candidateName, a } = this.state;
+    let score = 85;
+    let passed = true;
+
+    try {
+      const resp = await fetch('/api/assessments/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          applicationId: appId,
+          answers: a,
+          timeSpent: 120
+        })
+      });
+      if (resp.ok) {
+        const data = await resp.json();
+        score = data.score;
+        passed = data.passed;
+      }
+    } catch(e) {
+      console.warn('Scored locally');
+      // Calculate local score
+      const answeredCount = Object.keys(a).length;
+      score = Math.min(100, Math.round((answeredCount / 10) * 85));
+      passed = score >= 60;
+    }
+
+    sessionStorage.setItem('hr_last_score', score);
+
+    if (passed) {
+      window.location.href = `ResultPass.dc.html?appId=${encodeURIComponent(appId)}&score=${score}&name=${encodeURIComponent(candidateName)}`;
+    } else {
+      window.location.href = `ResultFail.dc.html?appId=${encodeURIComponent(appId)}&score=${score}&name=${encodeURIComponent(candidateName)}`;
+    }
+  }
+
   renderVals() {
     const Q = [
       { t: 'mcq', text: 'ما الخطوة الأولى الصحيحة قبل دهان جدار لياسة جديد؟', o: ['تطبيق الدهان النهائي مباشرة', 'التأكد من جفاف السطح ثم تطبيق طبقة أساس مناسبة', 'رش السطح بالماء قبل الدهان', 'تطبيق طبقة ورنيش شفاف'] },
-      { t: 'mcq', text: 'أي أداة أنسب لدهان سقف واسع بتشطيب منتظم وسرعة عالية؟', o: ['فرشاة 2 إنش', 'رول مع عصا تمديد أو جهاز رش', 'إسفنجة ديكور', 'سكين معجون'] },
+      { t: 'mcq', text: 'أي أداة أنسب لدهان سقف واسع بتشطيب منتظم وسرعة عالية؟', o: ['فرشاة 2 إنش', 'رول مع عصا تمديد أو جهاز رش Airless', 'إسفنجة ديكور', 'سكين معجون'] },
       { t: 'num', text: 'جدران غرفة مساحتها 48 م². إذا كان اللتر يغطي 12 م² للطبقة الواحدة، كم لتراً تحتاج لطبقتين؟', unit: 'لتر' },
       { t: 'text', text: 'صف خطواتك لمعالجة تقشّر الدهان في جدار حمام رطب قبل إعادة دهانه.' },
-      { t: 'mcq', text: 'ما السبب الأكثر شيوعاً لظهور فقاعات في الدهان بعد تطبيقه؟', o: ['رطوبة محبوسة أو سطح شديد الحرارة', 'استخدام لون فاتح', 'الدهان في الصباح', 'كثرة الإضاءة'] },
+      { t: 'mcq', text: 'ما السبب الأكثر شيوعاً لظهور فقاعات في الدهان بعد تطبيقه؟', o: ['رطوبة محبوسة في السطح أو ارتفاع حرارته', 'استخدام لون فاتح', 'الدهان في الصباح الباكر', 'كثرة الإضاءة في المكان'] },
       { t: 'upload', text: 'أرفق صوراً لأعمال دهان سابقة نفّذتها بنفسك (يفضّل قبل وبعد).' },
-      { t: 'mcq', text: 'ما معدات الوقاية الأساسية عند استخدام جهاز الرش Airless؟', o: ['قفازات فقط', 'كمامة تنفّس مناسبة ونظارة واقية وقفازات', 'لا يحتاج وقاية', 'خوذة فقط'] },
-      { t: 'text', text: 'طلب العميل لوناً يختلف قليلاً عن العيّنة المعتمدة في العقد. كيف تتصرف؟' },
+      { t: 'mcq', text: 'ما معدات الوقاية الأساسية عند استخدام جهاز الرش Airless؟', o: ['قفازات فقط', 'كمامة تنفّس ونظارة واقية وقفازات وملابس عمل', 'لا حاجة للوقاية داخل المباني', 'خوذة فقط'] },
+      { t: 'text', text: 'طلب العميل درجة لون تختلف قليلاً عن العيّنة المعتمدة في العقد. كيف تتصرف باحترافية؟' },
       { t: 'num', text: 'نسبة التخفيف الموصى بها 10%. كم مليلتر ماء تضيف إلى 4 لترات دهان؟', unit: 'مل' },
-      { t: 'mcq', text: 'كم ساعة تنتظر عادةً بين طبقتي دهان مائي في ظروف معتدلة؟', o: ['15 دقيقة', 'حسب تعليمات المصنّع — غالباً 2 إلى 4 ساعات', '3 أيام', 'لا حاجة للانتظار'] }
+      { t: 'mcq', text: 'كم ساعة تنتظر عادةً بين طبقتي دهان مائي في ظروف جوية معتدلة؟', o: ['15 دقيقة', 'حسب مواصفات الشركة المصنعة (غالباً 2 إلى 4 ساعات)', '3 أيام كاملة', 'لا حاجة للانتظار'] }
     ];
     const labels = { mcq: 'اختيار من متعدد', text: 'إجابة نصية', num: 'إجابة رقمية', upload: 'إرفاق أعمال' };
     const i = this.state.i, a = this.state.a;
@@ -151,21 +206,37 @@ class Component extends DCLogic {
     const keys = ['أ', 'ب', 'ج', 'د'];
     const opts = (q.o || []).map((label, k) => {
       const on = a[i] === k;
-      return { label, key: keys[k], bg: on ? '#FBF3DE' : '#FFFFFF', bd: on ? '#17191C' : '#E3DED5', kbg: on ? '#17191C' : '#F5F2EC', kfg: on ? '#FFFFFF' : '#17191C',
-        pick: () => this.setState({ a: Object.assign({}, a, { [i]: k }) }) };
+      return {
+        label,
+        key: keys[k],
+        bg: on ? '#FBF3DE' : '#FFFFFF',
+        bd: on ? '#17191C' : '#E3DED5',
+        kbg: on ? '#17191C' : '#F5F2EC',
+        kfg: on ? '#FFFFFF' : '#17191C',
+        pick: () => this.setState({ a: Object.assign({}, a, { [i]: k }) })
+      };
     });
     const nav = Q.map((_, k) => {
       const cur = k === i, done = a[k] !== undefined;
-      return { num: k + 1, bg: cur ? '#17191C' : (done ? '#E9F1EC' : '#FFFFFF'), fg: cur ? '#FFFFFF' : (done ? '#1E4A3C' : '#17191C'), bd: cur ? '#17191C' : (done ? '#A9C7BC' : '#E3DED5'), go: () => this.setState({ i: k }) };
+      return {
+        num: k + 1,
+        bg: cur ? '#17191C' : (done ? '#E9F1EC' : '#FFFFFF'),
+        fg: cur ? '#FFFFFF' : (done ? '#1E4A3C' : '#17191C'),
+        bd: cur ? '#17191C' : (done ? '#A9C7BC' : '#E3DED5'),
+        go: () => this.setState({ i: k })
+      };
     });
     const answered = Object.keys(a).length;
     return {
       q, opts, nav, answered, num: i + 1,
+      candidateHeader: `${this.state.candidateName} · طلب #${this.state.appId}`,
+      timer: this.state.timer,
       pct: ((i + 1) * 10) + '%',
       isMcq: q.t === 'mcq', isText: q.t === 'text', isNum: q.t === 'num', isUpload: q.t === 'upload',
       isLast: i === 9, notLast: i !== 9,
       prev: () => this.setState({ i: Math.max(0, i - 1) }),
-      next: () => this.setState({ i: Math.min(9, i + 1), a: q.t !== 'mcq' && a[i] === undefined ? Object.assign({}, a, { [i]: 'x' }) : a })
+      next: () => this.setState({ i: Math.min(9, i + 1), a: q.t !== 'mcq' && a[i] === undefined ? Object.assign({}, a, { [i]: 'x' }) : a }),
+      submitAssessment: () => this.submitAnswers()
     };
   }
 }

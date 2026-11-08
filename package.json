@@ -18,5 +18,9 @@
     "rtl"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "pg": "^8.23.1"
+  }
 }

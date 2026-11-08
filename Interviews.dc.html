@@ -19,7 +19,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
 <div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
 <div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
-<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">منصة التوظيف الذكية</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
 </div>
 <nav style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
@@ -143,8 +143,8 @@ class Component extends DCLogic {
     const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
     const F = [
       { when: 'بعد تعيين الموعد', title: 'دعوة المقابلة', stat: '58 أُرسلت · 6 بانتظارك',
-        tpl: 'مرحباً {الاسم}،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة {الوظيفة} في [اسم الشركة].\nموعد مقابلتك: {موعد_المقابلة}\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: {رابط_الحجز}',
-        preview: 'مرحباً محمد،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة فني دهانات أول في [اسم الشركة].\nموعد مقابلتك: الأحد 4 أكتوبر · 12:30\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: hr.[company].com/b/7KQ2' },
+        tpl: 'مرحباً {الاسم}،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة {الوظيفة} في منصة التوظيف الذكية.\nموعد مقابلتك: {موعد_المقابلة}\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: {رابط_الحجز}',
+        preview: 'مرحباً محمد،\nيسعدنا إبلاغك بتأهلك لمقابلة وظيفة فني دهانات أول في منصة التوظيف الذكية.\nموعد مقابلتك: الأحد 4 أكتوبر · 12:30\nالمقابلة افتراضية أونلاين، وسنرسل لك رابط القاعة عند حلول الموعد.\nلتأكيد الموعد أو تغييره: hr.[company].com/b/7KQ2' },
       { when: 'بعد تأكيد المرشح', title: 'تأكيد الموعد', stat: '52 أُرسلت',
         tpl: 'تم تأكيد مقابلتك يا {الاسم}.\nالموعد: {موعد_المقابلة} — المدة 30 دقيقة.\nتأكد من اتصال إنترنت جيد وكاميرا تعمل.',
         preview: 'تم تأكيد مقابلتك يا محمد.\nالموعد: الأحد 4 أكتوبر · 12:30 — المدة 30 دقيقة.\nتأكد من اتصال إنترنت جيد وكاميرا تعمل.' },

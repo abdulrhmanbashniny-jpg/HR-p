@@ -19,7 +19,7 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 <aside style="width: 256px; flex-shrink: 0; background: #17191C; color: #FFFFFF; padding: 24px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
 <div style="display: flex; align-items: center; gap: 12px; padding: 0 8px">
 <div style="display: flex; gap: 3px; align-items: flex-end"><div style="width: 8px; height: 22px; background: #C8553D; border-radius: 2px"></div><div style="width: 8px; height: 28px; background: #E0A21B; border-radius: 2px"></div><div style="width: 8px; height: 18px; background: #5E8E7F; border-radius: 2px"></div></div>
-<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">[اسم الشركة]</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
+<div style="display: flex; flex-direction: column"><span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 16px">منصة التوظيف الذكية</span><span style="font-size: 12px; color: #9DA1A7">لوحة التوظيف</span></div>
 </div>
 <nav style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
@@ -138,7 +138,32 @@ a{color:#0F5B4B}a:hover{color:#0A4034}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
 class Component extends DCLogic {
-  constructor(p) { super(p); this.state = { r: '30 يوماً' }; }
+  constructor(p) {
+    super(p);
+    this.state = { r: '30 يوماً', stats: null, applications: null };
+  }
+
+  async mounted() {
+    try {
+      const [sRes, aRes] = await Promise.all([
+        fetch('/api/stats'),
+        fetch('/api/applications')
+      ]);
+      if (sRes.ok) {
+        const stats = await sRes.json();
+        this.setState({ stats });
+      }
+      if (aRes.ok) {
+        const applications = await aRes.json();
+        if (Array.isArray(applications) && applications.length > 0) {
+          this.setState({ applications });
+        }
+      }
+    } catch(e) {
+      console.log('Dashboard running in offline view mode');
+    }
+  }
+
   renderVals() {
     const navItems = [
       ['نظرة عامة', 'Dashboard.dc.html', ''], ['الوظائف وبرومنت AI', 'JobBuilder.dc.html', '6'], ['المرشحون والتقييم', 'CandidateProfile.dc.html', '23'],
@@ -148,27 +173,46 @@ class Component extends DCLogic {
     const active = 'Dashboard.dc.html';
     const nav = navItems.map(([label, href, badge]) => ({ label, href, badge, bg: href === active ? '#2A2D31' : 'transparent', fg: href === active ? '#FFFFFF' : '#B9BCC1' }));
     const ranges = ['7 أيام', '30 يوماً', 'الربع'].map((label) => ({ label, bg: label === this.state.r ? '#17191C' : 'transparent', fg: label === this.state.r ? '#FFFFFF' : '#4A4D52', pick: () => this.setState({ r: label }) }));
+    
+    const s = this.state.stats;
     const kpis = [
-      { label: 'إجمالي المتقدمين', value: '1,284', delta: '+18%', dc: '#1E6B4F' },
-      { label: 'اجتازوا الاختبار (≥60%)', value: '512', delta: '+9%', dc: '#1E6B4F' },
-      { label: 'مقابلات مجدولة', value: '64', delta: '+12', dc: '#1E6B4F' },
-      { label: 'متوسط درجة التقييم', value: '57%', delta: '−2%', dc: '#9A3A26' }
+      { label: 'إجمالي المتقدمين', value: s ? s.totalApplications.toString() : '1,284', delta: '+18%', dc: '#1E6B4F' },
+      { label: 'اجتازوا الاختبار (≥60%)', value: s ? s.passedAssessments.toString() : '512', delta: '+9%', dc: '#1E6B4F' },
+      { label: 'مقابلات مجدولة', value: s ? s.scheduledInterviews.toString() : '64', delta: '+12', dc: '#1E6B4F' },
+      { label: 'نسبة الاجتياز', value: s ? `${s.passRate}%` : '57%', delta: '+4%', dc: '#1E6B4F' }
     ];
     const vals = [62, 48, 71, 55, 90, 84, 40, 58, 77, 96, 69, 102, 88, 23];
     const max = 110;
     const bars = vals.map((v, i) => ({ h: Math.round(v / max * 170), label: i === 11 ? v : '', c: i === 13 ? '#E0A21B' : '#2F5D50', tip: v + ' طلباً' }));
     const funnel = [
-      { label: 'تقديم', v: '1,284', p: '100%', w: '100%' }, { label: 'أكملوا الاختبار', v: '1,046', p: '81%', w: '81%' },
-      { label: 'اجتازوا 60%', v: '512', p: '40%', w: '40%' }, { label: 'مقابلة', v: '64', p: '5%', w: '5%' }, { label: 'عرض وظيفي', v: '12', p: '0.9%', w: '1%' }
+      { label: 'تقديم', v: s ? s.totalApplications.toString() : '1,284', p: '100%', w: '100%' }, { label: 'أكملوا الاختبار', v: '1,046', p: '81%', w: '81%' },
+      { label: 'اجتازوا 60%', v: s ? s.passedAssessments.toString() : '512', p: '40%', w: '40%' }, { label: 'مقابلة', v: '64', p: '5%', w: '5%' }, { label: 'عرض وظيفي', v: '12', p: '0.9%', w: '1%' }
     ];
     const hc = [18, 34, 61, 98, 142, 181, 172, 176, 118, 46];
     const hist = hc.map((v, i) => ({ h: Math.round(v / 190 * 115), c: i >= 6 ? '#2F6B55' : '#CFC8BC', tip: (i * 10) + '–' + (i * 10 + 10) + '%: ' + v }));
     const P = { pass: ['#E9F1EC', '#1E4A3C', 'اجتاز'], fail: ['#F8E6E0', '#7E2F1F', 'لم يجتز'], int: ['#FBF3DE', '#5A4410', 'مقابلة'], rev: ['#E8EDF5', '#27406B', 'قيد المراجعة'] };
-    const rows = [
+    
+    let rowsData = [
       ['م', 'محمد القحطاني', 'فني دهانات أول', 78, 'int', 'قبل 12 دقيقة'], ['ر', 'ريم الشهري', 'فني مختبر ألوان', 91, 'rev', 'قبل 40 دقيقة'],
       ['ع', 'عبدالعزيز الدوسري', 'مشرف مواقع', 66, 'pass', 'قبل ساعة'], ['ف', 'فهد العتيبي', 'مندوب مبيعات', 44, 'fail', 'قبل ساعتين'],
       ['ن', 'نورة الزهراني', 'مستشار ديكور', 84, 'pass', 'قبل 3 ساعات'], ['خ', 'خالد الغامدي', 'أمين مستودع', 58, 'fail', 'قبل 4 ساعات']
-    ].map(([i, name, job, s, st, when]) => ({ i, name, job, s, when, sc: s >= 60 ? '#2F6B55' : '#B8B2A8', pbg: P[st][0], pfg: P[st][1], status: P[st][2] }));
+    ];
+
+    if (this.state.applications && this.state.applications.length > 0) {
+      rowsData = this.state.applications.slice(0, 8).map(a => {
+        const stKey = a.status === 'assessment_passed' ? 'pass' : (a.status === 'assessment_failed' ? 'fail' : 'rev');
+        return [
+          (a.full_name || 'م')[0],
+          a.full_name || 'مرشح',
+          a.job_title || 'وظيفة',
+          a.assessment_score || 75,
+          stKey,
+          'اليوم'
+        ];
+      });
+    }
+
+    const rows = rowsData.map(([i, name, job, score, st, when]) => ({ i, name, job, s: score, when, sc: score >= 60 ? '#2F6B55' : '#B8B2A8', pbg: P[st][0], pfg: P[st][1], status: P[st][2] }));
     const today = [
       { time: '10:00', name: 'ريم الشهري', job: 'فني مختبر ألوان', st: 'أُرسل الرابط' },
       { time: '11:30', name: 'محمد القحطاني', job: 'فني دهانات أول', st: 'مؤكَّد' },

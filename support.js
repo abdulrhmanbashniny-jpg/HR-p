@@ -266,8 +266,16 @@
     instance._rerender = render;
     render();
 
-    // 5. Add helpful, stylish Navigation Pill & Screen Resizer
-    attachPlatformToolbar();
+    // Lifecycle hook for dynamic initialization (e.g., fetching real API data)
+    if (typeof instance.mounted === 'function') {
+      try {
+        instance.mounted();
+      } catch (err) {
+        console.error('[DC Runtime] Error in instance.mounted():', err);
+      }
+    }
+
+    // Production mode — no demo toolbar
   }
 
   // 5. Floating Navigation Toolbar

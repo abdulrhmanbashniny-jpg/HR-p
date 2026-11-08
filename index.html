@@ -1,1602 +1,204 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منصة توظيف الدهانات — لوحة التحكم والمعاينة التفاعلية</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0F1115;
-      --surface: #181B20;
-      --surface-elevated: #22262E;
-      --surface-border: #2E333D;
-      --text-main: #FFFFFF;
-      --text-muted: #9DA3AF;
-      --brand-terracotta: #C8553D;
-      --brand-gold: #E0A21B;
-      --brand-green: #2F5D50;
-      --brand-blue: #3B5B8C;
-      --accent-active: #F2C14E;
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text-main);
-      font-family: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    /* Top Navigation Header */
-    header.platform-header {
-      height: 74px;
-      background: rgba(24, 27, 32, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--surface-border);
-      padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .brand-section {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .brand-logo-bars {
-      display: flex;
-      gap: 4px;
-      align-items: flex-end;
-    }
-
-    .brand-logo-bars span {
-      border-radius: 3px;
-    }
-
-    .brand-titles {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-title {
-      font-family: 'Alexandria', sans-serif;
-      font-weight: 800;
-      font-size: 19px;
-      letter-spacing: -0.3px;
-    }
-
-    .brand-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* Mode Switcher Tabs */
-    .view-mode-tabs {
-      display: flex;
-      background: #111317;
-      border: 1px solid var(--surface-border);
-      border-radius: 12px;
-      padding: 4px;
-      gap: 4px;
-    }
-
-    .view-tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 8px 18px;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .view-tab-btn:hover {
-      color: var(--text-main);
-    }
-
-    .view-tab-btn.active {
-      background: var(--surface-elevated);
-      color: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    .view-tab-btn.active .tab-badge {
-      background: var(--brand-terracotta);
-      color: #FFFFFF;
-    }
-
-    .tab-badge {
-      background: #2E333D;
-      color: var(--text-muted);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 999px;
-    }
-
-    /* Header Actions */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-quick-launch {
-      height: 42px;
-      padding: 0 18px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .btn-applicant {
-      background: var(--brand-terracotta);
-      color: #FFFFFF;
-      border: none;
-    }
-    .btn-applicant:hover {
-      background: #D9624A;
-      transform: translateY(-1px);
-    }
-
-    .btn-dashboard {
-      background: var(--surface-elevated);
-      color: #FFFFFF;
-      border: 1px solid var(--surface-border);
-    }
-    .btn-dashboard:hover {
-      background: #2D333E;
-      border-color: #404755;
-    }
-
-    /* Main Container */
-    main.platform-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .view-panel {
-      display: none;
-      flex: 1;
-    }
-
-    .view-panel.active {
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* ========================================================
-       1. INFINITE CANVAS VIEW
-       ======================================================== */
-    .canvas-viewport-wrapper {
-      position: relative;
-      flex: 1;
-      height: calc(100vh - 74px);
-      overflow: hidden;
-      background: radial-gradient(circle at 50% 50%, #15181F 0%, #0B0D10 100%);
-      cursor: grab;
-      user-select: none;
-    }
-
-    .canvas-viewport-wrapper.panning {
-      cursor: grabbing;
-    }
-
-    /* Canvas Grid Background */
-    .canvas-grid-bg {
-      position: absolute;
-      inset: -2000px;
-      background-size: 40px 40px;
-      background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      pointer-events: none;
-    }
-
-    /* Canvas Transform Container */
-    #canvas-world {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform-origin: 0 0;
-      transition: transform 0.05s ease-out;
-    }
-
-    /* Canvas Row Section Title Note */
-    .canvas-row-note {
-      position: absolute;
-      background: rgba(24, 27, 32, 0.85);
-      border: 1px solid var(--surface-border);
-      border-radius: 14px;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #FFFFFF;
-      font-family: 'Alexandria', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
-    }
-
-    .canvas-row-note .pill-tag {
-      font-size: 13px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: var(--brand-gold);
-      color: #17191C;
-    }
-
-    /* Artboard Card */
-    .artboard-card {
-      position: absolute;
-      background: #FFFFFF;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1.5px rgba(255,255,255,0.08);
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
-
-    .artboard-card:hover {
-      box-shadow: 0 28px 80px rgba(0,0,0,0.7), 0 0 0 2.5px var(--accent-active);
-    }
-
-    .artboard-header {
-      height: 48px;
-      background: #17191C;
-      color: #FFFFFF;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #2B2F36;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .artboard-title-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .artboard-interactive-badge {
-      background: rgba(47, 122, 95, 0.25);
-      color: #4ADE80;
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(74, 222, 128, 0.3);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .artboard-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-artboard-open {
-      background: #2A2E36;
-      color: #FFFFFF;
-      border: 1px solid #3E4450;
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-family: inherit;
-      font-size: 11.5px;
-      font-weight: 600;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: background 0.15s;
-    }
-
-    .btn-artboard-open:hover {
-      background: var(--brand-terracotta);
-      border-color: var(--brand-terracotta);
-    }
-
-    .artboard-frame {
-      width: 100%;
-      height: calc(100% - 48px);
-      border: none;
-      background: #F5F2EC;
-    }
-
-    /* Canvas Floating Control Bar */
-    .canvas-hud-controls {
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(24, 27, 32, 0.92);
-      backdrop-filter: blur(14px);
-      border: 1px solid var(--surface-border);
-      border-radius: 999px;
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.5);
-      z-index: 100;
-    }
-
-    .hud-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #252A32;
-      border: 1px solid #383F4C;
-      color: #FFFFFF;
-      font-size: 16px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .hud-btn:hover {
-      background: #343B47;
-      color: var(--accent-active);
-    }
-
-    .hud-btn-pill {
-      height: 36px;
-      padding: 0 14px;
-      border-radius: 999px;
-      background: #252A32;
-      border: 1px solid #383F4C;
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 12.5px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .hud-btn-pill:hover {
-      background: #343B47;
-      color: var(--accent-active);
-    }
-
-    .hud-zoom-label {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12.5px;
-      color: var(--text-muted);
-      min-width: 52px;
-      text-align: center;
-    }
-
-    /* Canvas Minimap */
-    .canvas-minimap {
-      position: absolute;
-      bottom: 24px;
-      left: 24px;
-      width: 220px;
-      height: 140px;
-      background: rgba(20, 23, 28, 0.9);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--surface-border);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .minimap-header {
-      padding: 6px 10px;
-      background: #181B20;
-      border-bottom: 1px solid #282C34;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .minimap-canvas-area {
-      flex: 1;
-      position: relative;
-      background: #0E1014;
-    }
-
-    .minimap-dot {
-      position: absolute;
-      border-radius: 2px;
-      background: rgba(200, 85, 61, 0.7);
-    }
-
-    .minimap-viewport-box {
-      position: absolute;
-      border: 1.5px solid var(--accent-active);
-      background: rgba(242, 193, 78, 0.12);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-
-    /* ========================================================
-       2. GUIDED FLOWS VIEW
-       ======================================================== */
-    .flows-container {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 48px 32px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 56px;
-    }
-
-    .flow-hero-banner {
-      background: linear-gradient(135deg, #1C2028 0%, #15181F 100%);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-lg);
-      padding: 40px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .flow-hero-banner::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 6px;
-      background: linear-gradient(to bottom, var(--brand-terracotta), var(--brand-gold), var(--brand-green));
-    }
-
-    .flow-hero-text h1 {
-      font-family: 'Alexandria', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    .flow-hero-text p {
-      color: var(--text-muted);
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 680px;
-    }
-
-    .flow-section-block {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
-
-    .flow-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .flow-section-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .flow-num-badge {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .flow-title-text {
-      font-family: 'Alexandria', sans-serif;
-      font-weight: 700;
-      font-size: 22px;
-    }
-
-    .flow-steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .flow-step-card {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-      position: relative;
-    }
-
-    .flow-step-card:hover {
-      background: var(--surface-elevated);
-      border-color: #3D4452;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
-    }
-
-    .step-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .step-screen-num {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--brand-gold);
-      background: rgba(224, 162, 27, 0.12);
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-
-    .step-card-title {
-      font-family: 'Alexandria', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .step-card-desc {
-      font-size: 13.5px;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .step-card-footer {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--accent-active);
-    }
-
-    /* ========================================================
-       3. SCREEN GRID GALLERY VIEW
-       ======================================================== */
-    .gallery-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 40px 32px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-
-    .gallery-filters-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .filter-pills {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-pill-btn {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      color: var(--text-muted);
-      padding: 8px 18px;
-      border-radius: 999px;
-      font-family: inherit;
-      font-size: 13.5px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .filter-pill-btn:hover {
-      color: var(--text-main);
-      border-color: #404756;
-    }
-
-    .filter-pill-btn.active {
-      background: var(--accent-active);
-      color: #17191C;
-      border-color: var(--accent-active);
-    }
-
-    .gallery-search-input {
-      height: 42px;
-      width: 280px;
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: 10px;
-      padding: 0 16px;
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 13.5px;
-      outline: none;
-    }
-
-    .gallery-search-input:focus {
-      border-color: var(--accent-active);
-    }
-
-    .gallery-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 24px;
-    }
-
-    .gallery-screen-card {
-      background: var(--surface);
-      border: 1px solid var(--surface-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.2s ease;
-    }
-
-    .gallery-screen-card:hover {
-      background: var(--surface-elevated);
-      border-color: #3F4756;
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.45);
-    }
-
-    .card-preview-thumb {
-      height: 180px;
-      background: #121418;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid var(--surface-border);
-    }
-
-    .card-preview-thumb iframe {
-      width: 1440px;
-      height: 900px;
-      transform: scale(0.22);
-      transform-origin: top center;
-      border: none;
-      pointer-events: none;
-      position: absolute;
-      top: 0;
-    }
-
-    .card-body {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
-    }
-
-    .card-category-badge {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .card-title {
-      font-family: 'Alexandria', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .card-meta-row {
-      display: flex;
-      gap: 12px;
-      font-size: 12px;
-      color: var(--text-muted);
-      font-family: 'IBM Plex Mono', monospace;
-    }
-
-    .card-actions-row {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .btn-launch-screen {
-      background: var(--brand-terracotta);
-      color: #FFFFFF;
-      padding: 7px 16px;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-
-    .btn-launch-screen:hover {
-      background: #D9624A;
-    }
-
-    /* Modal / Fullscreen Preview */
-    #screen-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(10, 12, 16, 0.88);
-      backdrop-filter: blur(16px);
-      z-index: 99999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    #screen-modal.open {
-      display: flex;
-    }
-
-    .modal-dialog {
-      width: 100%;
-      max-width: 1500px;
-      height: 94vh;
-      background: #17191C;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--surface-border);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 30px 90px rgba(0,0,0,0.8);
-    }
-
-    .modal-header {
-      height: 56px;
-      background: #1E2229;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--surface-border);
-    }
-
-    .modal-title {
-      font-family: 'Alexandria', sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .modal-close-btn {
-      background: #2D333E;
-      border: none;
-      color: #FFFFFF;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-close-btn:hover {
-      background: #3E4655;
-    }
-
-    .modal-iframe {
-      flex: 1;
-      border: none;
-      background: #F5F2EC;
-    }
-
-    /* Footer */
-    footer.platform-footer {
-      border-top: 1px solid var(--surface-border);
-      background: #121418;
-      padding: 20px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-  </style>
+<meta charset="utf-8">
+<title>بوابة التوظيف — الوظائف المتاحة</title>
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F2EC;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;color:#17191C}
+a{color:#0F5B4B}a:hover{color:#0A4034}
+</style>
+</helmet>
+<div dir="rtl" style="width: 1440px; min-height: 1700px; box-sizing: border-box; background: #F5F2EC; display: flex; flex-direction: column; overflow: hidden">
 
-  <!-- Top Header Navigation -->
-  <header class="platform-header">
-    <div class="brand-section">
-      <div class="brand-logo-bars">
-        <span style="width: 10px; height: 32px; background: var(--brand-terracotta);"></span>
-        <span style="width: 10px; height: 42px; background: var(--brand-gold);"></span>
-        <span style="width: 10px; height: 26px; background: var(--brand-green);"></span>
-      </div>
-      <div class="brand-titles">
-        <span class="brand-title">منصة توظيف الدهانات</span>
-        <span class="brand-subtitle">نظام التوظيف التفاعلي والتقييم بالذكاء الاصطناعي</span>
-      </div>
-    </div>
+<header style="height: 84px; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #E3DED5">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="display: flex; gap: 3px; align-items: flex-end">
+<div style="width: 10px; height: 30px; background: #C8553D; border-radius: 3px"></div>
+<div style="width: 10px; height: 38px; background: #E0A21B; border-radius: 3px"></div>
+<div style="width: 10px; height: 24px; background: #2F5D50; border-radius: 3px"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-family: Alexandria, sans-serif; font-weight: 700; font-size: 19px">منصة التوظيف الذكية</span>
+<span style="font-size: 12px; color: #5E6166">بوابة الكفاءات والدهانات</span>
+</div>
+</div>
+<nav style="display: flex; gap: 36px; font-size: 15px; font-weight: 500">
+<a href="#jobs" style="color: #17191C; text-decoration: none">الوظائف</a>
+<a href="System.dc.html" style="color: #4A4D52; text-decoration: none">معمارية النظام</a>
+<a href="Dashboard.dc.html" style="color: #4A4D52; text-decoration: none">لوحة التحكم</a>
+</nav>
+<a href="Dashboard.dc.html" style="height: 44px; padding: 0 20px; display: flex; align-items: center; gap: 8px; border: 1.5px solid #17191C; border-radius: 10px; color: #17191C; text-decoration: none; font-weight: 600; font-size: 14px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+دخول لجنة التوظيف
+</a>
+</header>
 
-    <!-- View Modes -->
-    <div class="view-mode-tabs">
-      <button class="view-tab-btn active" data-view="canvas">
-        <span>🎨 اللوحة الكاملة (Canvas)</span>
-        <span class="tab-badge">15 شاشة</span>
-      </button>
-      <button class="view-tab-btn" data-view="flows">
-        <span>🚀 مسارات التجربة (Flows)</span>
-      </button>
-      <button class="view-tab-btn" data-view="gallery">
-        <span>📱 معرض الشاشات (Grid)</span>
-      </button>
-    </div>
+<section style="padding: 72px 80px 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; padding: 8px 14px; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 999px; font-size: 13px; font-weight: 500">
+<span style="width: 8px; height: 8px; border-radius: 50%; background: #2F7A5F"></span>
+وظائف شاغرة معتمدة · التقديم مفتوح الآن
+</div>
+<h1 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 800; font-size: 68px; line-height: 1.15; letter-spacing: -0.5px">لوّن مسيرتك المهنية<br>مع فريق يصنع الألوان</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.8; color: #4A4D52; max-width: 560px">اختر الوظيفة المناسبة، قدّم بياناتك وسيرتك الذاتية، ثم أجرِ اختبار جدارة قصيراً يقيّمه الذكاء الاصطناعي فوراً وبعدالة.</p>
+<div style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 16px; padding: 8px; box-shadow: 0 12px 32px rgba(23,25,28,0.06)">
+<label style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 0 14px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E6166" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+<input placeholder="المسمى الوظيفي أو الكلمة المفتاحية" style="border: 0; outline: 0; font: inherit; font-size: 15px; width: 100%; background: transparent">
+</label>
+<div style="width: 1px; height: 32px; background: #E3DED5"></div>
+<label style="display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 15px; color: #4A4D52">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+<select style="border: 0; font: inherit; background: transparent; color: #17191C"><option>كل المدن</option></select>
+</label>
+<button style="height: 52px; padding: 0 28px; border: 0; border-radius: 11px; background: #17191C; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 15px">ابحث</button>
+</div>
+</div>
 
-    <!-- Action Shortcuts -->
-    <div class="header-actions">
-      <a href="Main.dc.html" class="btn-quick-launch btn-applicant" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        <span>بوابة المتقدمين</span>
-      </a>
-      <a href="Dashboard.dc.html" class="btn-quick-launch btn-dashboard" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-        <span>لوحة تحكم اللجنة</span>
-      </a>
-    </div>
-  </header>
+<div style="position: relative; height: 470px">
+<div style="position: absolute; left: 40px; top: 30px; width: 150px; height: 400px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.12); transform: rotate(-9deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #3B5B8C"></div><div style="height: 70px; background: #6F8BB8"></div><div style="height: 50px; background: #B3C3DD"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">الجودة والمختبر</div>
+</div>
+<div style="position: absolute; left: 175px; top: 10px; width: 150px; height: 420px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.12); transform: rotate(-3deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #2F5D50"></div><div style="height: 70px; background: #5E8E7F"></div><div style="height: 50px; background: #A9C7BC"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">المشاريع والمواقع</div>
+</div>
+<div style="position: absolute; left: 310px; top: 0; width: 150px; height: 440px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.14); transform: rotate(4deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #E0A21B"></div><div style="height: 70px; background: #EDC266"></div><div style="height: 50px; background: #F6E0AE"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">المبيعات والعملاء</div>
+</div>
+<div style="position: absolute; left: 445px; top: 26px; width: 150px; height: 420px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 18px 40px rgba(23,25,28,0.16); transform: rotate(10deg); display: flex; flex-direction: column; overflow: hidden">
+<div style="flex-grow: 1; background: #C8553D; display: flex; align-items: flex-end; padding: 14px; box-sizing: border-box"><span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #FFFFFF">PT-101</span></div><div style="height: 70px; background: #DD8A76"></div><div style="height: 50px; background: #F0C4B8"></div>
+<div style="padding: 12px; font-size: 12px; font-weight: 600">الإنتاج والتنفيذ</div>
+</div>
+</div>
+</section>
 
-  <!-- Main View Area -->
-  <main class="platform-content">
+<section style="margin: 0 80px; padding: 28px 32px; background: #17191C; border-radius: 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; color: #FFFFFF">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<span style="flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; background: #2A2D31; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #F2C14E">{{s.n}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-weight: 600; font-size: 16px">{{s.t}}</span>
+<span style="font-size: 13px; line-height: 1.6; color: #B9BCC1">{{s.d}}</span>
+</div>
+</div>
+</sc-for>
+</section>
 
-    <!-- 1. INFINITE CANVAS VIEW -->
-    <section id="view-canvas" class="view-panel active">
-      <div class="canvas-viewport-wrapper" id="canvas-viewport">
-        <div class="canvas-grid-bg"></div>
+<section id="jobs" style="padding: 64px 80px 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 style="margin: 0; font-family: Alexandria, sans-serif; font-weight: 700; font-size: 36px">الوظائف المتاحة</h2>
+<span style="font-size: 15px; color: #5E6166">كل وظيفة لها اختبار جدارة مصمّم خصيصاً لمهامها</span>
+</div>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+<button onClick="{{f.pick}}" style="height: 44px; padding: 0 18px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; background: {{f.bg}}; color: {{f.fg}}; border: 1px solid {{f.bd}}">{{f.label}}</button>
+</sc-for>
+</div>
+</div>
 
-        <div id="canvas-world">
-          <!-- Row Notes and Artboards dynamically injected via JS -->
-        </div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{jobs}}" as="j" hint-placeholder-count="6">
+<a href="{{j.href}}" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E3DED5; border-radius: 18px; overflow: hidden; text-decoration: none; color: #17191C">
+<div style="height: 112px; background: {{j.swatch}}; padding: 18px 22px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: flex-start; color: {{j.ink}}">
+<span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600">{{j.code}}</span>
+<span style="font-size: 12px; font-weight: 500">{{j.colorName}}</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; color: #5E6166">{{j.dept}}</span>
+<span style="font-family: Alexandria, sans-serif; font-weight: 600; font-size: 21px">{{j.title}}</span>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 13px">
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.city}}</span>
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.type}}</span>
+<span style="padding: 5px 10px; background: #F5F2EC; border-radius: 8px">{{j.exp}}</span>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid #EFEBE4">
+<span style="font-size: 13px; color: #5E6166">آخر موعد: {{j.deadline}}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: #0F5B4B"><span>التفاصيل والتقديم</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg></span>
+</div>
+</div>
+</a>
+</sc-for>
+</div>
+</section>
 
-        <!-- HUD Zoom Controls -->
-        <div class="canvas-hud-controls">
-          <button class="hud-btn" id="btn-zoom-out" title="تصغير (−)">−</button>
-          <span class="hud-zoom-label" id="zoom-percentage">100%</span>
-          <button class="hud-btn" id="btn-zoom-in" title="تكبير (+)">+</button>
-          <div style="width: 1px; height: 20px; background: var(--surface-border); margin: 0 4px;"></div>
-          <button class="hud-btn-pill" id="btn-zoom-reset" title="إعادة الضبط">100%</button>
-          <button class="hud-btn-pill" id="btn-zoom-fit" title="ملاءمة كل الشاشات">ملاءمة الكل</button>
-        </div>
+<footer style="margin-top: 60px; padding: 28px 80px; border-top: 1px solid #E3DED5; display: flex; justify-content: space-between; font-size: 13px; color: #5E6166">
+<span>© 2026 منصة التوظيف الذكية — جميع الحقوق محفوظة</span>
+<span>سياسة الخصوصية · شروط الاستخدام · تواصل معنا</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { f: 'الكل', serverJobs: null };
+  }
 
-        <!-- Canvas MiniMap -->
-        <div class="canvas-minimap">
-          <div class="minimap-header">
-            <span>خريطة اللوحة</span>
-            <span style="font-family: 'IBM Plex Mono', monospace;">15 Screens</span>
-          </div>
-          <div class="minimap-canvas-area" id="minimap-area">
-            <div class="minimap-viewport-box" id="minimap-viewport-box"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. GUIDED FLOWS VIEW -->
-    <section id="view-flows" class="view-panel">
-      <div class="flows-container">
-        
-        <div class="flow-hero-banner">
-          <div class="flow-hero-text">
-            <h1>مسارات التجربة التفاعلية المباشرة</h1>
-            <p>تم تصميم المنصة لتغطي رحلة التوظيف بالكامل من لحظة استكشاف الوظيفة من قِبل المرشح، مروراً باختبار الجدارة والتقييم الآلي بالذكاء الاصطناعي، وحتى جدولة المقابلات وإرسال رسائل واتساب.</p>
-          </div>
-          <div style="display: flex; gap: 12px;">
-            <a href="Main.dc.html" class="btn-quick-launch btn-applicant" target="_blank">بدء رحلة المتقدم الآن</a>
-            <a href="Dashboard.dc.html" class="btn-quick-launch btn-dashboard" target="_blank">بدء تجربة اللجنة</a>
-          </div>
-        </div>
-
-        <!-- Flow 1: Applicant Journey -->
-        <div class="flow-section-block">
-          <div class="flow-section-header">
-            <div class="flow-section-title-wrap">
-              <span class="flow-num-badge" style="background: rgba(200, 85, 61, 0.2); color: var(--brand-terracotta);">01</span>
-              <span class="flow-title-text">رحلة المتقدّم — من اختيار الوظيفة حتى النتيجة</span>
-            </div>
-            <span style="font-size: 13px; color: var(--text-muted);">6 شاشات متصلة</span>
-          </div>
-
-          <div class="flow-steps-grid">
-            <a href="Main.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Main.dc.html</span>
-              </div>
-              <span class="step-card-title">بوابة الوظائف الشاغرة</span>
-              <p class="step-card-desc">استعراض الوظائف حسب التخصص (الإنتاج، المشاريع، الجودة)، فلترة بالمدينة، وبحث فوري.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Job.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٢</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Job.dc.html</span>
-              </div>
-              <span class="step-card-title">تفاصيل الوظيفة والشروط</span>
-              <p class="step-card-desc">الوصف الوظيفي لـ «فني دهانات أول»، بطاقة الألوان، المهام والمسؤوليات، والشروط الإلزامية والمفضلة.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Apply.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٣</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Apply.dc.html</span>
-              </div>
-              <span class="step-card-title">نموذج التقديم الذكي</span>
-              <p class="step-card-desc">إدخال البيانات الأساسية، رقم الجوال المعتمد لواتساب، ورفع السيرة الذاتية بصيغة PDF أو Word.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Assessment.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٤</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Assessment.dc.html</span>
-              </div>
-              <span class="step-card-title">اختبار الجدارة (١٠ أسئلة)</span>
-              <p class="step-card-desc">اختبار تفاعلي مع مؤقت حقيقي، أسئلة فنية (اختيار، حساب مساحات الدهان، سؤال نصي لمعالجة الرطوبة، ورفع أعمال).</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="ResultPass.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٥أ</span>
-                <span style="font-size: 12px; color: var(--text-muted);">ResultPass.dc.html</span>
-              </div>
-              <span class="step-card-title">نتيجة الاجتياز (≥ 60%)</span>
-              <p class="step-card-desc">شاشة النجاح بنتيجة 78%، وتأكيد انتقال المرشح لمرحلة المقابلات وإشعاره عبر واتساب.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="ResultFail.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٥ب</span>
-                <span style="font-size: 12px; color: var(--text-muted);">ResultFail.dc.html</span>
-              </div>
-              <span class="step-card-title">نتيجة الاعتذار (< 60%)</span>
-              <p class="step-card-desc">اعتذار مهذب مع إعلام المرشح بإمكانية التقديم مجدداً بعد 90 يوماً وحفظ السيرة في قاعدة البيانات.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Flow 2: Hiring Committee -->
-        <div class="flow-section-block">
-          <div class="flow-section-header">
-            <div class="flow-section-title-wrap">
-              <span class="flow-num-badge" style="background: rgba(47, 93, 80, 0.25); color: #5EEAD4;">02</span>
-              <span class="flow-title-text">لوحة التحكم — لجنة التوظيف وفرز المرشحين</span>
-            </div>
-            <span style="font-size: 13px; color: var(--text-muted);">6 شاشات متصلة</span>
-          </div>
-
-          <div class="flow-steps-grid">
-            <a href="Dashboard.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٦</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Dashboard.dc.html</span>
-              </div>
-              <span class="step-card-title">لوحة التحكم: نظرة عامة</span>
-              <p class="step-card-desc">مؤشرات الأداء الرئيسية (KPIs)، منحنى التقديم اليومي، قمع التوظيف، وتوزيع درجات الاختبار.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="CandidateProfile.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٧</span>
-                <span style="font-size: 12px; color: var(--text-muted);">CandidateProfile.dc.html</span>
-              </div>
-              <span class="step-card-title">ملف المرشح وتقييم اللجنة</span>
-              <p class="step-card-desc">معاينة إجابات الاختبار، تقييم لجنة المقابلات (معايير تفاعلية)، ومعاينة السيرة الذاتية داخل نافذة Modal.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Ranking.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٨</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Ranking.dc.html</span>
-              </div>
-              <span class="step-card-title">ترتيب المرشحين ومنصة التتويج</span>
-              <p class="step-card-desc">منصة البوديوم للثلاثة الأوائل، جدول فرز بالدرجة النهائية ودرجة الذكاء الاصطناعي، وفلترة بالوظيفة.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Interviews.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ٩</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Interviews.dc.html</span>
-              </div>
-              <span class="step-card-title">رسائل واتساب ورابط القاعة</span>
-              <p class="step-card-desc">محاكاة إرسال رسائل الدعوة عبر واتساب، إنشاء قاعات الاجتماع، ومعاينة المتغيرات المخصصة لكل مرشح.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="JobBuilder.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١٠</span>
-                <span style="font-size: 12px; color: var(--text-muted);">JobBuilder.dc.html</span>
-              </div>
-              <span class="step-card-title">إعداد الوظيفة وبرومبت AI</span>
-              <p class="step-card-desc">هندسة الأوامر (Prompt Engineering) لتوليد الأسئلة ومعايير التصحيح، ومفاتيح تبديل قواعد الاختبار.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="System.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١١</span>
-                <span style="font-size: 12px; color: var(--text-muted);">System.dc.html</span>
-              </div>
-              <span class="step-card-title">البنية التقنية للمنصة</span>
-              <p class="step-card-desc">مخطط المعمارية الكامل: React + Vite على GitHub، وقواعد بيانات PostgreSQL على خادم VPS والخدمات الخلفية والتكاملات.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Flow 3: AI Engine & Automation -->
-        <div class="flow-section-block">
-          <div class="flow-section-header">
-            <div class="flow-section-title-wrap">
-              <span class="flow-num-badge" style="background: rgba(224, 162, 27, 0.2); color: var(--brand-gold);">03</span>
-              <span class="flow-title-text">محرك الذكاء الاصطناعي، الجدولة، والإعدادات</span>
-            </div>
-            <span style="font-size: 13px; color: var(--text-muted);">3 شاشات متصلة</span>
-          </div>
-
-          <div class="flow-steps-grid">
-            <a href="AIEngine.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١٢</span>
-                <span style="font-size: 12px; color: var(--text-muted);">AIEngine.dc.html</span>
-              </div>
-              <span class="step-card-title">محرك التحليل بالذكاء الاصطناعي</span>
-              <p class="step-card-desc">مراحل المعالجة الست، إخفاء الهوية لضمان النزاهة، استخراج المهارات، والمخرج الموحد بصيغة JSON.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Scheduler.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١٣</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Scheduler.dc.html</span>
-              </div>
-              <span class="step-card-title">جدولة المواعيد التلقائية</span>
-              <p class="step-card-desc">محايد وقت المقابلات، مراعاة أوقات الصلاة تلقائياً، حساب سعة المقابلات، وتوزيع المواعيد بنقرة واحدة.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-
-            <a href="Settings.dc.html" target="_blank" class="flow-step-card">
-              <div class="step-card-top">
-                <span class="step-screen-num">شاشة ١٤</span>
-                <span style="font-size: 12px; color: var(--text-muted);">Settings.dc.html</span>
-              </div>
-              <span class="step-card-title">إعدادات المزودات والتكاملات</span>
-              <p class="step-card-desc">اختيار مزود الذكاء الاصطناعي (Claude / GPT-4o / Gemini)، إعداد قاعة الاجتماع (Google Meet / Teams)، والواتساب.</p>
-              <div class="step-card-footer">
-                <span>فتح الشاشة</span>
-                <span>←</span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 3. SCREEN GRID GALLERY VIEW -->
-    <section id="view-gallery" class="view-panel">
-      <div class="gallery-container">
-        
-        <div class="gallery-filters-bar">
-          <div class="filter-pills" id="gallery-filter-pills">
-            <button class="filter-pill-btn active" data-filter="all">جميع الشاشات (15)</button>
-            <button class="filter-pill-btn" data-filter="applicant">رحلة المتقدم (6)</button>
-            <button class="filter-pill-btn" data-filter="committee">لجنة التوظيف (6)</button>
-            <button class="filter-pill-btn" data-filter="ai">الذكاء والتكاملات (3)</button>
-          </div>
-          <input type="text" id="gallery-search" class="gallery-search-input" placeholder="ابحث عن شاشة أو وظيفة…">
-        </div>
-
-        <div class="gallery-cards-grid" id="gallery-cards-container">
-          <!-- Populated dynamically via JS -->
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Modal Preview Window -->
-  <div id="screen-modal">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <span class="modal-title" id="modal-screen-title">معاينة الشاشة</span>
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <a id="modal-external-link" href="#" target="_blank" style="color: var(--accent-active); font-size: 13px; text-decoration: none; font-weight: 600;">فتح في علامة تبويب جديدة ↗</a>
-          <button class="modal-close-btn" id="modal-close-btn">✕</button>
-        </div>
-      </div>
-      <iframe id="modal-iframe" class="modal-iframe" src=""></iframe>
-    </div>
-  </div>
-
-  <!-- Bottom Platform Footer -->
-  <footer class="platform-footer">
-    <span>© 2026 منصة توظيف قطاع الدهانات والتشطيبات — نموذج أولي متكامل</span>
-    <span>جميع الشاشات تدعم التفاعل الحي وحفظ الحالة عبر <code>support.js</code></span>
-  </footer>
-
-  <script>
-    // Screen definitions matching canvas.json
-    const SCREENS_DATA = [
-      { id: 'Main.dc.html', title: '١ — الصفحة الرئيسية والوظائف', group: 'applicant', x: 0, y: 0, w: 1440, h: 1700, desc: 'بوابة التوظيف الرسمية، تصفح الوظائف، والفلترة حسب الأقسام.' },
-      { id: 'Job.dc.html', title: '٢ — تفاصيل الوظيفة', group: 'applicant', x: 1520, y: 0, w: 1440, h: 1500, desc: 'الوصف الكامل لوظيفة فني دهانات أول، كود اللون PT-101، والشروط.' },
-      { id: 'Apply.dc.html', title: '٣ — نموذج التقديم', group: 'applicant', x: 3040, y: 0, w: 1440, h: 1100, desc: 'استمارة البيانات الأساسية، رقم الواتساب، وتحميل السيرة الذاتية.' },
-      { id: 'Assessment.dc.html', title: '٤ — اختبار الجدارة (١٠ أسئلة)', group: 'applicant', x: 4560, y: 0, w: 1440, h: 1000, desc: 'اختبار فني تفاعلي مع مؤقت حقيقي وحفظ تلقائي للإجابات.' },
-      { id: 'ResultPass.dc.html', title: '٥أ — النتيجة: اجتاز (≥ 60%)', group: 'applicant', x: 6080, y: 0, w: 1440, h: 1000, desc: 'بطاقة اجتياز مرحلة التقييم بنسبة 78% ورقم الطلب.' },
-      { id: 'ResultFail.dc.html', title: '٥ب — النتيجة: اعتذار (< 60%)', group: 'applicant', x: 7600, y: 0, w: 1440, h: 1000, desc: 'رسالة اعتذار مهذبة مع حفظ الملف في قاعدة المواهب.' },
-
-      { id: 'Dashboard.dc.html', title: '٦ — لوحة التحكم: نظرة عامة', group: 'committee', x: 0, y: 2100, w: 1440, h: 1200, desc: 'مؤشرات الأداء ورسوم بيانية لإحصائيات التقديم والتقييم.' },
-      { id: 'CandidateProfile.dc.html', title: '٧ — ملف المرشح وتقييم اللجنة', group: 'committee', x: 1520, y: 2100, w: 1440, h: 1400, desc: 'تفاصيل إجابات المرشح، نافذة السيرة الذاتية، وتقييم المقابلة.' },
-      { id: 'Ranking.dc.html', title: '٨ — ترتيب المرشحين', group: 'committee', x: 3040, y: 2100, w: 1440, h: 1100, desc: 'ترتيب المتقدمين والبوديوم والفرز حسب درجات الذكاء الاصطناعي.' },
-      { id: 'Interviews.dc.html', title: '٩ — رسائل واتساب (رابط هجين)', group: 'committee', x: 4560, y: 2100, w: 1440, h: 1450, desc: 'إرسال روابط القاعات الافتراضية عبر رسائل واتساب تفاعلية.' },
-      { id: 'JobBuilder.dc.html', title: '١٠ — إعداد الوظيفة وبرومنت AI', group: 'committee', x: 6080, y: 2100, w: 1440, h: 1250, desc: 'محرر البرومبت لتوليد أسئلة الاختبار وتخصيص معايير التقييم.' },
-      { id: 'System.dc.html', title: '١١ — البنية التقنية (Architecture)', group: 'committee', x: 7600, y: 2100, w: 1440, h: 1000, desc: 'مخطط الربط بين GitHub وخادم VPS (PostgreSQL) و WhatsApp و AI Providers.' },
-
-      { id: 'AIEngine.dc.html', title: '١٢ — محرك التحليل بالذكاء الاصطناعي', group: 'ai', x: 0, y: 4050, w: 1440, h: 2150, desc: 'مسار معالجة السير الذاتية وتصحيح الاختبار مع مخرج JSON موحد.' },
-      { id: 'Scheduler.dc.html', title: '١٣ — ترتيب مواعيد المقابلات', group: 'ai', x: 1520, y: 4050, w: 1440, h: 1600, desc: 'جدولة المقابلات وتوزيع المواعيد تلقائياً مع تفادي أوقات الصلاة.' },
-      { id: 'Settings.dc.html', title: '١٤ — الإعدادات والتكاملات', group: 'ai', x: 3040, y: 4050, w: 1440, h: 1560, desc: 'تخصيص نماذج الذكاء الاصطناعي وقاعات الاجتماع وبوابة واتساب.' }
-    ];
-
-    const ROW_NOTES = [
-      { text: 'رحلة المتقدّم — من اختيار الوظيفة حتى النتيجة', tag: 'المسار الأول', x: 0, y: -240 },
-      { text: 'لوحة التحكم — لجنة التوظيف وفرز المرشحين', tag: 'المسار الثاني', x: 0, y: 1900 },
-      { text: 'التحليل الذكي، ترتيب المواعيد، والتكاملات', tag: 'المسار الثالث', x: 0, y: 3850 }
-    ];
-
-    // ==========================================
-    // Tab Mode Navigation
-    // ==========================================
-    const tabBtns = document.querySelectorAll('.view-tab-btn');
-    const panels = {
-      canvas: document.getElementById('view-canvas'),
-      flows: document.getElementById('view-flows'),
-      gallery: document.getElementById('view-gallery')
-    };
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const mode = btn.getAttribute('data-view');
-        Object.keys(panels).forEach(k => {
-          panels[k].classList.toggle('active', k === mode);
-        });
-
-        if (mode === 'canvas') {
-          updateMinimap();
+  async mounted() {
+    try {
+      const res = await fetch('/api/jobs');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          this.setState({ serverJobs: data });
         }
-      });
-    });
-
-    // ==========================================
-    // Infinite Canvas Engine (Pan & Zoom)
-    // ==========================================
-    const viewport = document.getElementById('canvas-viewport');
-    const world = document.getElementById('canvas-world');
-    const zoomLabel = document.getElementById('zoom-percentage');
-
-    let scale = 0.16; // Start zoomed out to see all boards
-    let panX = 140;
-    let panY = 80;
-    let isPanning = false;
-    let startX = 0;
-    let startY = 0;
-
-    function applyTransform() {
-      world.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
-      zoomLabel.textContent = `${Math.round(scale * 100)}%`;
-      updateMinimap();
-    }
-
-    // Populate Canvas with Row Notes and Artboards
-    function initCanvasBoards() {
-      // 1. Add Row Notes
-      ROW_NOTES.forEach(note => {
-        const div = document.createElement('div');
-        div.className = 'canvas-row-note';
-        div.style.left = `${note.x}px`;
-        div.style.top = `${note.y}px`;
-        div.innerHTML = `
-          <span class="pill-tag">${note.tag}</span>
-          <span>${note.text}</span>
-        `;
-        world.appendChild(div);
-      });
-
-      // 2. Add Artboards
-      SCREENS_DATA.forEach(screen => {
-        const card = document.createElement('div');
-        card.className = 'artboard-card';
-        card.style.left = `${screen.x}px`;
-        card.style.top = `${screen.y}px`;
-        card.style.width = `${screen.w}px`;
-        card.style.height = `${screen.h}px`;
-
-        card.innerHTML = `
-          <div class="artboard-header">
-            <div class="artboard-title-group">
-              <span style="font-family: 'Alexandria', sans-serif;">${screen.title}</span>
-              <span class="artboard-interactive-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                تفاعلي
-              </span>
-            </div>
-            <div class="artboard-actions">
-              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8F949E;">${screen.w} × ${screen.h}</span>
-              <button class="btn-artboard-open" onclick="openScreenModal('${screen.id}', '${screen.title}')">
-                <span>معاينة</span>
-                <span>🔍</span>
-              </button>
-              <a href="${screen.id}" target="_blank" class="btn-artboard-open">
-                <span>فتح كامل</span>
-                <span>↗</span>
-              </a>
-            </div>
-          </div>
-          <iframe class="artboard-frame" src="${screen.id}" loading="lazy"></iframe>
-        `;
-
-        world.appendChild(card);
-      });
-
-      // Initial fit
-      fitCanvasAll();
-    }
-
-    // Mouse drag pan
-    viewport.addEventListener('mousedown', (e) => {
-      // Don't pan if clicking an interactive control
-      if (e.target.closest('.canvas-hud-controls') || e.target.closest('.canvas-minimap')) return;
-      isPanning = true;
-      viewport.classList.add('panning');
-      startX = e.clientX - panX;
-      startY = e.clientY - panY;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isPanning) return;
-      panX = e.clientX - startX;
-      panY = e.clientY - startY;
-      applyTransform();
-    });
-
-    window.addEventListener('mouseup', () => {
-      isPanning = false;
-      viewport.classList.remove('panning');
-    });
-
-    // Mouse wheel zoom
-    viewport.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      const rect = viewport.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
-      const newScale = Math.max(0.04, Math.min(1.5, scale * zoomFactor));
-
-      // Zoom towards mouse pointer
-      panX = mouseX - (mouseX - panX) * (newScale / scale);
-      panY = mouseY - (mouseY - panY) * (newScale / scale);
-      scale = newScale;
-
-      applyTransform();
-    }, { passive: false });
-
-    // HUD buttons
-    document.getElementById('btn-zoom-in').addEventListener('click', () => {
-      scale = Math.min(1.5, scale * 1.25);
-      applyTransform();
-    });
-
-    document.getElementById('btn-zoom-out').addEventListener('click', () => {
-      scale = Math.max(0.04, scale * 0.8);
-      applyTransform();
-    });
-
-    document.getElementById('btn-zoom-reset').addEventListener('click', () => {
-      scale = 1.0;
-      panX = (viewport.clientWidth - 1440) / 2;
-      panY = 60;
-      applyTransform();
-    });
-
-    function fitCanvasAll() {
-      // Total bounds from x: 0 to 9040, y: -240 to 6200
-      const totalW = 9200;
-      const totalH = 6500;
-      const viewW = viewport.clientWidth || window.innerWidth;
-      const viewH = viewport.clientHeight || (window.innerHeight - 74);
-
-      scale = Math.min(viewW / totalW, viewH / totalH) * 0.92;
-      panX = (viewW - totalW * scale) / 2 + 50 * scale;
-      panY = 40;
-      applyTransform();
-    }
-
-    document.getElementById('btn-zoom-fit').addEventListener('click', fitCanvasAll);
-
-    // ==========================================
-    // Minimap Rendering
-    // ==========================================
-    const minimapArea = document.getElementById('minimap-area');
-    const minimapBox = document.getElementById('minimap-viewport-box');
-
-    function initMinimapDots() {
-      const minX = 0, maxX = 9200;
-      const minY = -300, maxY = 6500;
-      const spanX = maxX - minX;
-      const spanY = maxY - minY;
-
-      SCREENS_DATA.forEach(screen => {
-        const dot = document.createElement('div');
-        dot.className = 'minimap-dot';
-        dot.style.left = `${((screen.x - minX) / spanX) * 100}%`;
-        dot.style.top = `${((screen.y - minY) / spanY) * 100}%`;
-        dot.style.width = `${(screen.w / spanX) * 100}%`;
-        dot.style.height = `${(screen.h / spanY) * 100}%`;
-        minimapArea.appendChild(dot);
-      });
-    }
-
-    function updateMinimap() {
-      if (!minimapArea) return;
-      const minX = 0, maxX = 9200;
-      const minY = -300, maxY = 6500;
-      const spanX = maxX - minX;
-      const spanY = maxY - minY;
-
-      const viewW = viewport.clientWidth;
-      const viewH = viewport.clientHeight;
-
-      // Invert pan & scale
-      const curX = -panX / scale;
-      const curY = -panY / scale;
-      const curW = viewW / scale;
-      const curH = viewH / scale;
-
-      const boxLeft = Math.max(0, Math.min(100, ((curX - minX) / spanX) * 100));
-      const boxTop = Math.max(0, Math.min(100, ((curY - minY) / spanY) * 100));
-      const boxW = Math.max(4, Math.min(100, (curW / spanX) * 100));
-      const boxH = Math.max(4, Math.min(100, (curH / spanY) * 100));
-
-      minimapBox.style.left = `${boxLeft}%`;
-      minimapBox.style.top = `${boxTop}%`;
-      minimapBox.style.width = `${boxW}%`;
-      minimapBox.style.height = `${boxH}%`;
-    }
-
-    // ==========================================
-    // Gallery Grid View Population & Filtering
-    // ==========================================
-    const galleryContainer = document.getElementById('gallery-cards-container');
-    const filterPills = document.querySelectorAll('.filter-pill-btn');
-    const searchInput = document.getElementById('gallery-search');
-
-    function renderGalleryCards(filter = 'all', search = '') {
-      galleryContainer.innerHTML = '';
-
-      const query = search.trim().toLowerCase();
-      const filtered = SCREENS_DATA.filter(s => {
-        const matchFilter = filter === 'all' || s.group === filter;
-        const matchSearch = !query || s.title.toLowerCase().includes(query) || s.desc.toLowerCase().includes(query) || s.id.toLowerCase().includes(query);
-        return matchFilter && matchSearch;
-      });
-
-      filtered.forEach(screen => {
-        const card = document.createElement('div');
-        card.className = 'gallery-screen-card';
-        card.innerHTML = `
-          <div class="card-preview-thumb">
-            <iframe src="${screen.id}" loading="lazy"></iframe>
-          </div>
-          <div class="card-body">
-            <span class="card-category-badge">${getGroupLabel(screen.group)}</span>
-            <span class="card-title">${screen.title}</span>
-            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6;">${screen.desc}</p>
-            <div class="card-meta-row">
-              <span>ملف: ${screen.id}</span>
-              <span>•</span>
-              <span>${screen.w}×${screen.h}px</span>
-            </div>
-            <div class="card-actions-row">
-              <button class="btn-artboard-open" onclick="openScreenModal('${screen.id}', '${screen.title}')">
-                معاينة نافذة 🔍
-              </button>
-              <a href="${screen.id}" target="_blank" class="btn-launch-screen">
-                فتح الشاشة ↗
-              </a>
-            </div>
-          </div>
-        `;
-        galleryContainer.appendChild(card);
-      });
-    }
-
-    function getGroupLabel(group) {
-      if (group === 'applicant') return 'مسار المتقدم';
-      if (group === 'committee') return 'لجنة التوظيف';
-      if (group === 'ai') return 'الذكاء والجدولة';
-      return '';
-    }
-
-    filterPills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        filterPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        renderGalleryCards(pill.getAttribute('data-filter'), searchInput.value);
-      });
-    });
-
-    searchInput.addEventListener('input', () => {
-      const activeFilter = document.querySelector('.filter-pill-btn.active')?.getAttribute('data-filter') || 'all';
-      renderGalleryCards(activeFilter, searchInput.value);
-    });
-
-    // ==========================================
-    // Modal Preview Handler
-    // ==========================================
-    const modal = document.getElementById('screen-modal');
-    const modalIframe = document.getElementById('modal-iframe');
-    const modalTitle = document.getElementById('modal-screen-title');
-    const modalExternal = document.getElementById('modal-external-link');
-    const modalClose = document.getElementById('modal-close-btn');
-
-    window.openScreenModal = function(url, title) {
-      modalTitle.textContent = title;
-      modalExternal.href = url;
-      modalIframe.src = url;
-      modal.classList.add('open');
-    };
-
-    modalClose.addEventListener('click', () => {
-      modal.classList.remove('open');
-      modalIframe.src = '';
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('open');
-        modalIframe.src = '';
       }
+    } catch(err) {
+      console.log('[Main] Loaded with offline fallback data');
+    }
+  }
+
+  renderVals() {
+    const cur = this.state.f;
+    const filters = ['الكل', 'الإنتاج', 'المشاريع', 'المبيعات', 'الجودة', 'المستودعات'].map((label) => {
+      const on = label === cur;
+      return {
+        label,
+        bg: on ? '#17191C' : '#FFFFFF',
+        fg: on ? '#FFFFFF' : '#17191C',
+        bd: on ? '#17191C' : '#E3DED5',
+        pick: () => this.setState({ f: label })
+      };
     });
 
-    // Window resize
-    window.addEventListener('resize', () => {
-      if (document.getElementById('view-canvas').classList.contains('active')) {
-        fitCanvasAll();
-      }
-    });
+    const defaultJobs = [
+      { id: '22222222-2222-2222-2222-222222222222', code: 'PT-101', colorName: 'تيراكوتا', swatch: '#C8553D', ink: '#FFFFFF', dept: 'الإنتاج', title: 'فني دهانات أول', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة 3+ سنوات', deadline: '15 نوفمبر' },
+      { id: '33333333-3333-3333-3333-333333333333', code: 'PM-204', colorName: 'أخضر زيتي', swatch: '#2F5D50', ink: '#FFFFFF', dept: 'المشاريع', title: 'مشرف مواقع ومشاريع', city: 'جدة', type: 'دوام كامل', exp: 'خبرة 5+ سنوات', deadline: '20 نوفمبر' },
+      { id: '44444444-4444-4444-4444-444444444444', code: 'SL-310', colorName: 'زعفراني', swatch: '#E0A21B', ink: '#17191C', dept: 'المبيعات', title: 'مندوب مبيعات ميداني', city: 'الدمام', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '18 نوفمبر' },
+      { id: '55555555-5555-5555-5555-555555555555', code: 'QC-412', colorName: 'أزرق رمادي', swatch: '#3B5B8C', ink: '#FFFFFF', dept: 'الجودة', title: 'فني مختبر مطابقة ألوان', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنتين+', deadline: '25 نوفمبر' },
+      { id: '66666666-6666-6666-6666-666666666666', code: 'WH-518', colorName: 'بني ترابي', swatch: '#8A6E4B', ink: '#FFFFFF', dept: 'المستودعات', title: 'أمين مستودع', city: 'الرياض', type: 'دوام كامل', exp: 'خبرة سنة+', deadline: '12 نوفمبر' },
+      { id: '77777777-7777-7777-7777-777777777777', code: 'DS-605', colorName: 'وردي رملي', swatch: '#D9B3C2', ink: '#17191C', dept: 'المبيعات', title: 'مستشار ديكور وألوان', city: 'جدة', type: 'دوام جزئي', exp: 'خبرة 3+ سنوات', deadline: '30 نوفمبر' }
+    ];
 
-    // Initialize all
-    window.addEventListener('DOMContentLoaded', () => {
-      initCanvasBoards();
-      initMinimapDots();
-      renderGalleryCards();
-    });
-  </script>
+    const source = (this.state.serverJobs && this.state.serverJobs.length > 0) ? this.state.serverJobs : defaultJobs;
+    const all = source.map(j => ({
+      ...j,
+      href: 'Job.dc.html?id=' + (j.id || j.code)
+    }));
+
+    const jobs = cur === 'الكل' ? all : all.filter((j) => j.dept === cur);
+    const steps = [
+      { n: '01', t: 'اختر الوظيفة', d: 'اطّلع على الوصف والمهام والشروط' },
+      { n: '02', t: 'قدّم بياناتك', d: 'الاسم والجوال والبريد والسيرة الذاتية' },
+      { n: '03', t: 'اختبار الجدارة', d: '10 أسئلة يقيّمها الذكاء الاصطناعي' },
+      { n: '04', t: 'مقابلة افتراضية', d: 'نرسل لك الموعد والرابط عبر واتساب' }
+    ];
+    return { filters, jobs, steps };
+  }
+}
+</script>
 </body>
 </html>
