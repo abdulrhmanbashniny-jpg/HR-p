@@ -275,7 +275,8 @@
       }
     }
 
-    // Production mode — no demo toolbar
+    // Floating Navigation & Screen Switcher
+    attachPlatformToolbar();
   }
 
   // 5. Floating Navigation Toolbar
